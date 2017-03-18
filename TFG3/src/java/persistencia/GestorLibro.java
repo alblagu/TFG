@@ -16,26 +16,26 @@ import java.util.ArrayList;
  */
 public class GestorLibro {
 
-	    public static ArrayList<Libro> selectAll() throws SQLException, ClassNotFoundException {
-        ArrayList<Libro> libros= new ArrayList<>();
-        String laQuery = ("select * from BIBLIOTECA.LIBRO");
-        ResultSet rs = ConexionBD.getInstancia().select(laQuery);
-        while (rs.next()) {
-		libros.add(new Libro(rs.getString("isbn10"),rs.getString("isbn13"),rs.getString("nombre")));
-        }
-        return libros;
-    }
+	public static ArrayList<Libro> selectAll() throws SQLException, ClassNotFoundException {
+        	ArrayList<Libro> libros= new ArrayList<>();
+        	String laQuery = ("select * from BIBLIOTECA.LIBRO");
+        	ResultSet rs = ConexionBD.getInstancia().select(laQuery);
+        	while (rs.next()) {
+			libros.add(new Libro(rs.getString("isbn10"),rs.getString("isbn13"),rs.getString("titulo"),rs.getString("urlfoto")));
+        	}
+        	return libros;
+    	}
 
 	public static Libro selectLibroByISBN(String isbn) throws ClassNotFoundException, SQLException {
-        String laQuery = ("select * from BIBLIOTECA.LIBRO where isbn10='"+isbn+"' OR isbn13='"+isbn+"'");
-        ResultSet rs = ConexionBD.getInstancia().select(laQuery);
-	while(rs.next())
-		return new Libro(rs.getString("isbn10"), rs.getString("isbn13"), rs.getString("nombre"));
-	return null;
+        	String laQuery = ("select * from BIBLIOTECA.LIBRO where isbn10='"+isbn+"' OR isbn13='"+isbn+"'");
+       		ResultSet rs = ConexionBD.getInstancia().select(laQuery);
+		while(rs.next())
+			return new Libro(rs.getString("isbn10"), rs.getString("isbn13"), rs.getString("titulo"),rs.getString("urlfoto"));
+		return null;
 	}
 
 	public static void create(Libro libro) throws ClassNotFoundException, SQLException {
-		String laQuery=("insert into biblioteca.LIBRO(ISBN10,ISBN13, NOMBRE) values('"+libro.getISBN10()+"','" + libro.getISBN13()+ "','" + libro.getTitulo()+ "')");
+		String laQuery=("insert into biblioteca.LIBRO(ISBN10,ISBN13, TITULO,URLFOTO) values('"+libro.getISBN10()+"','" + libro.getISBN13()+ "','" + libro.getTitulo()+ "','"+libro.getUrlFoto()+"')");
 		ConexionBD.getInstancia().update(laQuery);
 	}
 

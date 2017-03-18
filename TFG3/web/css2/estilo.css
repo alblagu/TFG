@@ -1,0 +1,42 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14-mar-2017, 15:45:56
+    Author     : alberto
+*/
+
+#caja{
+	position: absolute;
+	top:7%;
+	height: 93%;
+	width: 100%;
+	background-image: url(fotos/foto.jpg);
+  	background-position: center center;
+  	background-repeat: no-repeat;
+  	background-attachment: fixed;
+  	background-size: cover;
+}
+
+#cajahijo{
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 30%;
+	width: 50%;
+	margin: -15% 0 0 -25%;
+}
+
+.texto-info{
+	font-family: cursive;	
+	color:#255625;
+}
+
+.texto-error{
+	font-style: italic;
+	color:#c9302c;	
+}
+
