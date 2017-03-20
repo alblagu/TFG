@@ -20,9 +20,12 @@ public class GestorUsuario {
 		ResultSet rs =ConexionBD.getInstancia().select(laQuery);
 
 		while(rs.next())
-			return new Usuario(rs.getString("dni")); 
+			return new Usuario(rs.getString("dni"),rs.getString("password"),rs.getString("nombre"),rs.getString("apellidos"),rs.getString("telefono")); 
 		return null;
-		
+	}
+	public static void createUsuario(Usuario nuevo)throws ClassNotFoundException, SQLException{
+		String laQuery=("insert into BIBLIOTECA.USUARIO(DNI,PASSWORD,NOMBRE,APELLIDOS,TELEFONO) values('"+nuevo.getDNI()+"','"+nuevo.getPassword()+"','"+nuevo.getNombre()+"','"+nuevo.getApellidos()+"',"+/*nuevo.getTelefono()*/121221+")");
+		ConexionBD.getInstancia().update(laQuery);
 	}
 	
 }

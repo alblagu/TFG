@@ -37,6 +37,12 @@ and open the template in the editor.
 
 						</div>
 						<div class="collapse navbar-collapse" id="navbar-1">
+							<form class="navbar-form navbar-left">
+								<div class="form-group" ng-controller="Busqueda">
+									<input type="text" class="form-control" placeholder="Buscar" ng-model="busqueda">
+									<input type="button" class="form-control btn btn-primary" value="B" ng-click="realizarBusqueda()"> 
+							</div>
+							</form>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a href="http://localhost:8080/TFG3/nuevoUsuario.html">Consultar Libro</a> </li>
 								<li class="active"><a href="">Añadir Ejemplar </a> </li>
@@ -50,6 +56,8 @@ and open the template in the editor.
 								</li>
 							</ul>	
 						</div>
+
+					
 					</div>
 
 				</nav>
@@ -87,7 +95,6 @@ and open the template in the editor.
 			</div>
 				
 		</div>
-		<!--
 		<div class="container-fluid" ng-controller="Ejemplares1">
 			
 			<ul>
@@ -110,7 +117,6 @@ and open the template in the editor.
 			</nav>
 			
 		</div>	
-  		-->
 	
 		
 		<script src="http://code.jquery.com/jquery-latest.js"></script>

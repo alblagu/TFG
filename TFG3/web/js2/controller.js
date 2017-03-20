@@ -53,7 +53,7 @@ app.controller("Ejemplares2",function($scope,$http){
 		if(!$scope.error){	
 			$http({
   			method: 'GET',
-  			url: 'http://localhost:8080/TFG3/webresources/generic/libros/'+$scope.isbn
+  			url: 'http://localhost:8080/TFG3/webresources/generic/libro/'+$scope.isbn
 				}).then(function successCallback(response) {
 				$scope.error=false;
 				$scope.libro=response.data;
@@ -76,12 +76,14 @@ app.controller("Ejemplares2",function($scope,$http){
 			$scope.textoError="El codigo no puede ser una cadena vacia";
 		}
 		else{
-			var a=JSON.stringify($scope.libro);
-			console.log(a);
-			console.log($scope.codigo);
 			$http({
+				headers: { 
+        				'Accept': 'application/json',
+        				'Content-Type': 'application/json' 
+    },
   		 		method: 'POST',
-  				url: 'http://localhost:8080/TFG3/webresources/generic/ejemplares/'+$scope.codigo+'/'+a
+  				url: 'http://localhost:8080/TFG3/webresources/generic/ejemplares/'+$scope.codigo,
+				data:JSON.stringify($scope.libro)
 				}).then(function successCallback(response) {
 					
 					console.log(response);
@@ -99,6 +101,15 @@ app.controller("Ejemplares2",function($scope,$http){
 			}
 			};	
 	
+});
+app.controller("Busqueda",function($scope){
+	$scope.busqueda="";
+	
+	$scope.realizarBusqueda=function(){
+		if($scope.busqueda.length!==0){
+			window.location='http://localhost:8080/TFG3/busqueda.html?busqueda='+$scope.busqueda;
+		}		
+	};
 });
 		
   

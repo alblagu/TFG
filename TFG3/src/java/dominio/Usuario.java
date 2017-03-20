@@ -10,16 +10,39 @@ package dominio;
  * @author alberto
  */
 public class Usuario {
-	public final String dni;
+	private final String dni;
+	private final String password;
+	private final String nombre;
+	private final String apellidos;
+	private final String telefono;
 
-	public Usuario(String dni) {
-		this.dni=dni;
+	public Usuario(String dni, String password, String nombre, String apellidos, String telefono) {
+		this.dni = dni;
+		this.password = password;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.telefono = telefono;
 	}
-
+	
 	public String getDNI() {
 		return dni;
 	}
 
-	
+	public String getPassword() {
+		return password;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
 	
 }
