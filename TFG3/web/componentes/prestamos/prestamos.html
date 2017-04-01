@@ -1,0 +1,14 @@
+<div ng-app="prestamos" ng-controller="prestamosController">
+	<br/>
+	<br/>
+	<ul>
+		<li class="list-group-item"><h1 class="text-center  "><u >Prestamos Activos</u></h1></li>
+		<li ng-repeat="prestamo in prestamos" class="list-group-item" >
+			<h4><u>Prestamo {{$index+1}}</u></h4>
+			<strong>Fecha de Fin--> {{prestamo.fecha_fin}}</strong>
+			<p>Libro--> {{prestamo.libro}}</p>
+			<span class="badge">{{$index+1}}</span>
+			<br/>
+		</li>
+	</ul>
+</div>

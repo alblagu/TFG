@@ -1,0 +1,49 @@
+<html ng-app="Busqueda">
+	<head>
+		<title>TODO supply a title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/estilo.css" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+		<script src="js2/busquedaLibros.js"></script>
+		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
+		<script src="componentes/prestamos/prestamos.js"></script>
+		<script src="componentes/footer/footer.js"></script>
+	</head>
+	<body ng-controller="Busqueda1">
+	<barra-navegacion></barra-navegacion>
+
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+			<ul>
+				<br>
+				<li class="list-group-item text-center text-info"><h4>Los libros encontrados con la cadena "{{busqueda}}" son los siguientes:</h4></li>
+				<li ng-repeat="libro in libros" class="list-group-item text-center">
+					<img ng-src="{{libro.urlfoto}}">
+					<strong>Titulo: {{libro.titulo}}</strong>
+					<input type="button" class="btn btn-lg btn-primary" value="VerEjemplares" ng-click="muestraEjemplares($index)">
+					<br/>
+				</li>
+				<li class="list-group-item text-center text-danger " ng-hide="librosVacio">No se ha encontrado ningun libro</li>
+				<li class="list-group-item text-center" ><ul class="pagination">
+						<li><a href="#">&laquo;</a></li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">&raquo;</a></li>
+					</ul></li>
+			</ul>
+
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+			<prestamos></prestamos>
+		</div>
+	</div>
+	<pie-pagina></pie-pagina>
+</body>
+</html>

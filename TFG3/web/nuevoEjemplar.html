@@ -1,0 +1,57 @@
+<html ng-app="Ejemplar">
+	<head>
+		<title>BIBLIOTECA</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/estilo2.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/estilo.css" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
+		<script src="componentes/prestamos/prestamos.js"></script>
+		<script src="componentes/footer/footer.js"></script>
+		<script src="js2/nuevoEjemplar.js"></script>
+	</head>
+	<body>
+	<barra-navegacion></barra-navegacion>
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+			<div id="caja" class="container-fluid colorBeis" ng-controller="Ejemplar2">
+				<div id="cajahijo">
+					<form ng-show="!parte" >
+						<h1 class="texto-info"> Introduza el isbn del ejemplar que quiere añadir</h1>
+
+						<input type="text" ng-model="isbn" class="form-control" >
+						<br>
+						<input type="button" ng-click="getLibro()" value="Enviar" class="btn btn-lg btn-primary">
+						<div ng-show="error">
+							<h3 class="texto-error">{{textoError}}</h3>
+						</div>
+					</form>
+					<form ng-show="parte">
+						<h1 class="texto-info">El libro con el ISBN: {{isbn}} es {{libro.titulo}}.</h1>
+						<br/>
+						<img ng-src="{{libro.urlfoto}}">
+						<br/>
+						<br/>
+						<h1 class="texto-info"> Introduce su codigo de la biblioteca ahora </h1>
+						<input type="text" ng-model="codigo" class="form-control">
+						<br/>
+						<input type="button" ng-click="addEjemplar()" value="Añadir Ejemplar" class="btn btn-lg btn-primary">
+						<input type="button" ng-click="cancelar()" value="Cancelar" class="btn btn-lg btn-danger">
+						<h3 class="texto-error">{{textoError}}</h3>
+					</form>
+				</div>
+			</div>
+			<br/>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+			<prestamos></prestamos>
+		</div>
+	</div>	
+	<pie-pagina></pie-pagina>
+</body>
+</html>

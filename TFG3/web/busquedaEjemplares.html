@@ -1,0 +1,22 @@
+<html ng-app="BusquedaEjemplares">
+	<head>
+		<title>TODO supply a title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+		<script src="js2/busquedaEjemplares.js"></script>
+		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
+	</head>
+	<body ng-controller="Busqueda1">
+		<barra-navegacion></barra-navegacion>
+		
+		<h1>Ejemplares</h1>
+			<li ng-repeat="ejemplar in ejemplares">
+				<strong>{{ejemplar.isbn10}}</strong>
+				<p>{{ejemplar.codigo}}</p>
+				<br/>
+			</li>
+	</body>
+</html>

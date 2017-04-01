@@ -13,10 +13,12 @@ public class Ejemplar {
 
 	private final String codigo;
 	private final Libro libro;
+	private final String estado;
 
-	public Ejemplar(String codigo, Libro libro) {
+	public Ejemplar(String codigo, Libro libro, String estado) {
 		this.codigo=codigo;
 		this.libro=libro;
+		this.estado=estado;
 	}
 
 	public String getCodigo() {
@@ -27,6 +29,8 @@ public class Ejemplar {
 		return libro;
 	}
 
-	
+	public String getEstado(){
+		return estado;
+	}	
 	
 }

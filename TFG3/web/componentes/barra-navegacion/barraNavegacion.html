@@ -1,0 +1,47 @@
+<style>
+	.contenedor-navbar{
+		height: 50px;
+		background-color:gainsboro;
+		width: 100%;
+	}
+</style>
+<div  ng-app="BarraNavegacion" class="container-fluid contenedor-navbar" >
+	<br/>
+	<header>
+		<nav class="navbar-inverse navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1">
+						<span class="sr-only">Menu</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="#" class="navbar-brand"> Biblioteca </a>
+				</div>
+				<div class="collapse navbar-collapse" id="navbar-1">
+					<form class="navbar-form navbar-left">
+						<div class="form-group" ng-controller="Busqueda">
+							<input type="text" class="form-control" placeholder="Buscar" ng-model="busqueda">
+							<button  ng-click="realizarBusqueda()" class="btn btn-primary">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</div>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="http://localhost:8080/TFG3/nuevoUsuario.html">Consultar Libro</a> </li>
+						<li class="active"><a href="">Añadir Ejemplar </a> </li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >Prestamos<span class="caret"></span></a> 
+							<ul class="dropdown-menu">
+								<li><a href="http://localhost:8080/TFG3/nuevoEjemplar.html">Item1</a></li>	
+								<li><a href="">Item2</a></li>	
+								<li class="divider"></li>	
+								<li><a href="">Item4</a></li>	
+							</ul>
+						</li>
+					</ul>	
+				</div>
+			</div>
+		</nav>
+	</header>
+</div>

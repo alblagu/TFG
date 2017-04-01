@@ -1,21 +1,5 @@
-var app=angular.module("Ejemplares",[]);
-app.controller("Ejemplares1",function($scope,$http){
-	$scope.fotos=[];
-	$http({
-  		method: 'GET',
-  		url: 'http://localhost:8080/TFG3/webresources/generic/libros'
-
-		}).then(function successCallback(response) {
-			console.log(response);
-			$scope.fotos=response.data;
- 		 }, 
-		 function errorCallback(response) {
-    			// called asynchronously if an error occurs
-   			 // or server returns response with an error status.
-    			console.log(response);
-  		});
-});
-app.controller("Ejemplares2",function($scope,$http){
+angular.module("Ejemplar",["barraNavegacion" , "prestamos", "piePagina"])
+.controller("Ejemplar2",function($scope,$http){
 	$scope.isbn="";
 	$scope.codigo="";
 	$scope.error=false;
@@ -24,7 +8,6 @@ app.controller("Ejemplares2",function($scope,$http){
 	$scope.cancelar=function(){
 		$scope.parte=false;
 	};
-	
 	
 	$scope.errores=function(){
 		$scope.error=false;
@@ -67,7 +50,6 @@ app.controller("Ejemplares2",function($scope,$http){
 			}
 			};
 
-
 	$scope.addEjemplar=function(){
 		$scope.error=false;
 		$scope.textoError="";
@@ -100,16 +82,4 @@ app.controller("Ejemplares2",function($scope,$http){
   				});
 			}
 			};	
-	
-});
-app.controller("Busqueda",function($scope){
-	$scope.busqueda="";
-	
-	$scope.realizarBusqueda=function(){
-		if($scope.busqueda.length!==0){
-			window.location='http://localhost:8080/TFG3/busqueda.html?busqueda='+$scope.busqueda;
-		}		
-	};
-});
-		
-  
+	});

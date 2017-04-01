@@ -28,7 +28,7 @@ public class GestorEjemplar {
 		ResultSet rs =ConexionBD.getInstancia().select(laQuery);
 
 		while(rs.next())
-			return new Ejemplar(rs.getString("codigo"),GestorLibro.selectLibroByISBN(rs.getString("libro"))); 
+			return new Ejemplar(rs.getString("codigo"),GestorLibro.selectLibroByISBN(rs.getString("libro")),rs.getString("estado")); 
 		return null;
 	}
 
@@ -45,7 +45,7 @@ public class GestorEjemplar {
 
 		ArrayList<Ejemplar> ejemplares=new ArrayList<>();
 		while(rs.next())
-			ejemplares.add(new Ejemplar(rs.getString("codigo"),GestorLibro.selectLibroByISBN(rs.getString("libro"))));
+			ejemplares.add(new Ejemplar(rs.getString("codigo"),GestorLibro.selectLibroByISBN(rs.getString("libro")),rs.getString("estado")));
 		return ejemplares;
 	}
 	
@@ -56,7 +56,7 @@ public class GestorEjemplar {
 	 * @throws java.sql.SQLException al ocurrir algun problema con la base de datos.
 	 */
 	public static void create(Ejemplar ejemplar) throws ClassNotFoundException, SQLException {
-		String laQuery=("insert into BIBLIOTECA.EJEMPLAR(CODIGO,LIBRO) values('"+ejemplar.getCodigo()+"','"+ejemplar.getLibro().getISBN10()+"')");
+		String laQuery=("insert into BIBLIOTECA.EJEMPLAR(CODIGO,LIBRO,ESTADO) values('"+ejemplar.getCodigo()+"','"+ejemplar.getLibro().getISBN10()+"','"+ejemplar.getEstado()+"')");
 		ConexionBD.getInstancia().update(laQuery);
 	}
 

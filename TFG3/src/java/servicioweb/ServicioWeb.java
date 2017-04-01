@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servicioweb;
 
 import dominio.Ejemplar;
@@ -11,8 +6,6 @@ import dominio.Prestamo;
 import dominio.Usuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
@@ -52,10 +45,9 @@ public class ServicioWeb {
 	@Path("libros")
         @Produces(MediaType.TEXT_PLAIN)
 	public String getLibros() throws SQLException, ClassNotFoundException {
-		ArrayList<Libro> libros= new ArrayList<>();
+		ArrayList<Libro> libros=GestorLibro.selectAll();
 		JSONArray libros2=new JSONArray();
 
-		libros=GestorLibro.selectAll();
 
 		for(int i =0;i<libros.size();i++){
 			JSONObject nuevo=new JSONObject();
@@ -231,7 +223,7 @@ public class ServicioWeb {
 		if(libro.getBoolean("internet"))
 			GestorLibro.create(new Libro(libro.getString("isbn10"),libro.getString("isbn13"),libro.getString("titulo"),libro.getString("urlfoto")));
 		else
-			GestorEjemplar.create(new Ejemplar(codigo,new Libro(libro.getString("isbn10"),libro.getString("isbn13"),libro.getString("titulo"),libro.getString("urlfoto"))));
+			GestorEjemplar.create(new Ejemplar(codigo,new Libro(libro.getString("isbn10"),libro.getString("isbn13"),libro.getString("titulo"),libro.getString("urlfoto")),"libre"));
 			
 	}
 
@@ -246,11 +238,6 @@ public class ServicioWeb {
 //		}
 //	}
 
-
-
-
-
-	
 	/**********************************************************************
         ******** 			PRESTAMOS			 ******
 	**********************************************************************/
@@ -265,18 +252,30 @@ public class ServicioWeb {
 	@Path("prestamos/{ejemplar}")
         @Produces(MediaType.TEXT_PLAIN)
 	public String getPrestamosByEjemplar(@PathParam ("ejemplar") String ejemplar) throws ClassNotFoundException, SQLException {
-		ArrayList<Prestamo> prestamos=GestorPrestamo.selectPrestamosByEjemplar(ejemplar);
+		return prestamosToString(GestorPrestamo.selectPrestamosByEjemplar(ejemplar));
+	}
+
+	@GET
+	@Path("prestamosUsu/{usuario}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getPrestamosByUsuario(@PathParam("usuario") String usuario) throws ClassNotFoundException, SQLException{
+		return prestamosToString(GestorPrestamo.selectPrestamosByUsuario(usuario));
+	}
+	
+	private String prestamosToString(ArrayList<Prestamo> prestamos) {
 		JSONArray prestamos2 = new JSONArray();
 		
 		for(int i=0;i<prestamos.size();i++){
 			JSONObject nuevo=new JSONObject();
 			nuevo.put("id", prestamos.get(i).getId());
 			nuevo.put("usuario", prestamos.get(i).getUsuario().getDNI());
-			nuevo.put("ejemplar", prestamos.get(i).getEjemplar().getCodigo());
+			nuevo.put("libro", prestamos.get(i).getEjemplar().getLibro().getTitulo());
+			nuevo.put("estado", prestamos.get(i).getEstado());
 			nuevo.put("fecha_ini",prestamos.get(i).getFechaIni());
 			nuevo.put("fecha_fin",prestamos.get(i).getFechaFin());
 			prestamos2.put(nuevo);
 		}
+
 		return prestamos2.toString();
 	}
 	
@@ -301,4 +300,5 @@ public class ServicioWeb {
 		GestorUsuario.createUsuario(new Usuario(usuario.getString("dni"),usuario.getString("password"),usuario.getString("nombre"),usuario.getString("apellidos"),usuario.getString("telefono")));
 
 	}
+
 }

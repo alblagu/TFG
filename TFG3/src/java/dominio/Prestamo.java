@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dominio;
 
 import java.sql.Date;
@@ -15,13 +10,15 @@ public class Prestamo {
 	private final int id;
 	private final Ejemplar ejemplar;
 	private final Usuario usuario;
+	private final String estado;
 	private final Date fechaIni;
 	private final Date fechaFin;
 
-	public Prestamo(int id,Ejemplar ejemplar, Usuario usuario, Date fechaIni, Date fechaFin) {
+	public Prestamo(int id,Ejemplar ejemplar, Usuario usuario, String estado, Date fechaIni, Date fechaFin) {
 		this.id=id;
 		this.ejemplar=ejemplar;
 		this.usuario=usuario;
+		this.estado=estado;
 		this.fechaIni=fechaIni;
 		this.fechaFin=fechaFin;
 	}
@@ -38,6 +35,10 @@ public class Prestamo {
 		return usuario;
 	}
 
+	public String getEstado() {
+		return estado;
+	}
+
 	public Date getFechaIni() {
 		return fechaIni;
 	}
@@ -45,7 +46,4 @@ public class Prestamo {
 	public Date getFechaFin() {
 		return fechaFin;
 	}
-
-
-	
 }
