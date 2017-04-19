@@ -1,4 +1,4 @@
-angular.module("Ejemplar",["barraNavegacion" , "prestamos", "piePagina"])
+angular.module("app")
 .controller("Ejemplar2",function($scope,$http){
 	$scope.isbn="";
 	$scope.codigo="";
@@ -22,7 +22,7 @@ angular.module("Ejemplar",["barraNavegacion" , "prestamos", "piePagina"])
 				$scope.textoError="El isbn tiene que tener 10 o 13 digitos";
 			}
 			else{
-				if(isNaN($scope.isbn)){
+				if(isNaN($scope.isbn)||$scope.isbn%1!==0){
 					$scope.error=true;
 					$scope.textoError="El isbn tiene que tener solo numeros";
 				}

@@ -1,21 +1,31 @@
-<html ng-app="Ejemplares">
+<html ng-app="app">
 	<head>
 		<title>BIBLIOTECA</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-		<link rel="stylesheet" href="css2/estilo2.css" type="text/css"/>
 		<link rel="stylesheet" href="css2/estilo.css" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="modulo/app.js"></script>
 		<script src="js2/index.js"></script>
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
 		<script src="componentes/prestamos/prestamos.js"></script>
 		<script src="componentes/footer/footer.js"></script>
+		<script src="factorias/usuarioIdentificado.js"></script>
+		<script>
+			function deshabilitaRetroceso(){
+    				window.location.hash="no-back-button";
+    				window.location.hash="Again-No-back-button"; //chrome
+    				window.onhashchange=function(){
+					window.location.hash="no-back-button";
+				};
+			}
+		</script>
 	</head>
-	<body>
+	<body onload="deshabilitaRetroceso()">
 	<barra-navegacion></barra-navegacion>
 	
 	<div class="container">

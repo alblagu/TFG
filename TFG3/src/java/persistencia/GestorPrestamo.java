@@ -38,4 +38,18 @@ public class GestorPrestamo {
 	}
 		return prestamos;	
 	}
+
+	public static void createNuevoPrestamo(Prestamo prestamo) throws ClassNotFoundException, SQLException {
+//		String laQuery=("insert into BIBLIOTECA.PRESTAMO(ID,USUARIO,EJEMPLAR,ESTADO,FECHA_INI,FECHA_FIN) values("prestamo.getId()+",'"+prestamo.getUsuario()+"','"+prestamo.getEjemplar()+"','"+prestamo.getEstado()+"','"+prestamo.getFechaIni()+"','"+prestamo.getFechaFin()+"')");
+//		ConexionBD.getInstancia().update(laQuery);
+	}
+
+	public static int selectID() throws ClassNotFoundException, SQLException{
+		String laQuery = ("select * from BIBLIOTECA.PRESTAMO");
+		ResultSet rs =ConexionBD.getInstancia().select(laQuery);
+		int id=0;
+		while(rs.next())
+			id=rs.getInt("id");
+		return id;
+	}
 }

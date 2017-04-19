@@ -1,4 +1,4 @@
-angular.module("BusquedaEjemplares",["barraNavegacion"])
+angular.module("app")
 .controller("Busqueda1",function($scope,$http){
 	$scope.ejemplares=[];
 	$scope.isbn=getParameterByName("isbn",window.location);
@@ -7,6 +7,14 @@ angular.module("BusquedaEjemplares",["barraNavegacion"])
 			url: 'http://localhost:8080/TFG3/webresources/generic/ejemplares/'+$scope.isbn
 		}).then(function successCallback(response) {
 			$scope.ejemplares=response.data;
+ 		 }, 
+		 function errorCallback(response) {
+  		});
+		$http({
+			method: 'GET',
+			url: 'http://localhost:8080/TFG3/webresources/generic/libro/'+$scope.isbn
+		}).then(function successCallback(response) {
+			$scope.libroBuscado=response.data;
  		 }, 
 		 function errorCallback(response) {
   		});

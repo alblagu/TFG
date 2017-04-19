@@ -1,5 +1,7 @@
-angular.module("prestamos", [])
-	.controller("prestamosController", function ($scope, $http) {
+angular.module("prestamos",[])
+	.controller("prestamosController", function ($scope, $http, UsuarioFactory) {
+		$scope.usuario=UsuarioFactory.getDNI();
+		console.log("ola: "+$scope.usuario);
 		$scope.prestamos = [];
 		$http ({
 			method: 'GET',

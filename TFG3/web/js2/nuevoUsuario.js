@@ -1,4 +1,4 @@
-angular.module("Usuarios",["barraNavegacion"])
+angular.module("app")
 .controller("Usuario1",function($scope,$http){
 	$scope.dni="";
 	$scope.password="";

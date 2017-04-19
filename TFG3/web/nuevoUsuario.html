@@ -1,13 +1,20 @@
-<html ng-app="Usuarios">
+<html ng-app="app">
 	<head>
-		<title>TODO supply a title</title>
+		<title>BIBLIOTECA</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
-		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/estilo.css" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="modulo/app.js"></script>
 		<script src="js2/nuevoUsuario.js"></script>
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
+		<script src="componentes/prestamos/prestamos.js"></script>
+		<script src="componentes/footer/footer.js"></script>
+		<script src="componentes/usuario/usuario.js"></script>
 		<style>
 			body{
 				background: #bce8f1;
@@ -15,15 +22,27 @@
 		</style>
 	</head>
 	<body> 
-		<barra-navegacion></barra-navegacion>
-		<form ng-controller="Usuario1"> 
-			<input type="text" class="form-control" value="dni" ng-model="dni">
-			<input type="text" class="form-control" value="contraseña" ng-model="password">
-			<input type="text" class="form-control" value="nombre" ng-model="nombre">
-			<input type="text" class="form-control" value="apellidos" ng-model="apellidos">
-			<input type="text" class="form-control" value="telefono" ng-model="telefono">
-			<input type="button" class="btn btn-primary btn-lg" ng-click="nuevoUsuario()" value="nuevo">
-			
-		</form>
+		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+			<barra-navegacion></barra-navegacion>
+			<br/>
+			<h2 class="text-center">Añadir Nuevo Usuario</h2>
+			<form ng-controller="Usuario1"> 
+				<input type="text" class="form-control" value="dni" ng-model="dni">
+				<input type="text" class="form-control" value="contraseña" ng-model="password">
+				<input type="text" class="form-control" value="nombre" ng-model="nombre">
+				<input type="text" class="form-control" value="apellidos" ng-model="apellidos">
+				<input type="text" class="form-control" value="telefono" ng-model="telefono">
+				<br/>
+				<input type="button" class="btn btn-primary btn-lg" ng-click="nuevoUsuario()" value="nuevo">
+			</form>
+		</div>
+
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+			<br/>
+			<br/>
+			<prestamos></prestamos>
+		</div>
+		<pie-pagina></pie-pagina>		
+		<usuario></usuario>
 	</body>
 </html>

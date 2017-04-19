@@ -1,5 +1,6 @@
 <html ng-app="app">
 	<head>
+		<title>BIBLIOTECA</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
@@ -9,37 +10,33 @@
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 		<script src="modulo/app.js"></script>
-		<script src="js2/busquedaEjemplares.js"></script>
+		<script src="js2/nuevoPrestamo.js"></script>
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
 		<script src="componentes/prestamos/prestamos.js"></script>
 		<script src="componentes/footer/footer.js"></script>
 	</head>
-	<body ng-controller="Busqueda1">
+	<body>
 	<barra-navegacion></barra-navegacion>
 
-	<div class="container">
+	<div class="container" ng-controller="Prestamo">
+		<br/>
 		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-			<ul>
-			<li class="list-group-item">
-				<h1>Libro</h1>
-
-				<img ng-src="{{libroBuscado.urlfoto}}">
-				<p>{{libroBuscado.isbn10}}</p>
-
-				<h1>Ejemplares</h1>
-
-			</li>
-			<li class="list-group-item" ng-repeat="ejemplar in ejemplares">
-				<strong>{{ejemplar.isbn10}}</strong>
-				<p>{{ejemplar.codigo}}</p>
-				<br/>
-			</li>
-			<li class="list-group-item text-center" ><ul class="pagination">
-					<li><a href="#">Siguientes</a></li>
-					<li><a href="#">&raquo;</a></li>
-				</ul></li>
-			</ul>
-
+			<h1 class="text-center"> Nuevo Prestamo</h1>
+			<form ng-show="!avanzar" >
+				<input type="text" value="dni" ng-model="dni"/>
+				<input type="text" value="codigo" ng-model="codigo"/>
+				<input type="button" value="Realizar" ng-click="obtener()" />
+				<p class="text-danger text-center" >{{textoError}}</p>
+			</form>
+			<form ng-show="avanzar">
+				<h1>Hola gente el prestamo seria hasta el dia {{dia}}/{{mes}}/{{anio}}</h1>
+				<h4>¿Cuantos dias mas quieres añadirle</h4>
+				<img ng-src="{{ejemplar.urlfoto}}"/>
+				<p>{{usuario.dni}}</p>
+				<input type="text" ng-model="diasMax" value="dias a añadir"/>
+				<input type="button" value="Realizar" ng-click="nuevoPrestamo()" />
+				<p class="text-danger text-center" >{{textoError}}</p>
+			</form>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
 			<prestamos></prestamos>

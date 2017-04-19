@@ -1,6 +1,9 @@
-angular.module("Busqueda", ["barraNavegacion", "prestamos", "piePagina"])
+angular.module("app")
 	.controller("Busqueda1", function ($scope, $http) {
+		$scope.cantidadMostrada=2;
+		$scope.contador=0;
 		$scope.libros = [];
+		$scope.libros2  = [];
 		$scope.busqueda = getParameterByName("busqueda", window.location);
 		$scope.librosVacio = true;
 
@@ -14,6 +17,10 @@ angular.module("Busqueda", ["barraNavegacion", "prestamos", "piePagina"])
 				$scope.libros = response.data;
 				if ($scope.libros.length === 0)
 					$scope.librosVacio = false;
+				else{
+					$scope.contadorMaximo= parseInt($scope.libros.length/$scope.cantidadMostrada, 10);
+					$scope.muestraLibros();
+				}
 			},
 				function errorCallback(response) {
 					console.log(response);
@@ -27,6 +34,10 @@ angular.module("Busqueda", ["barraNavegacion", "prestamos", "piePagina"])
 				$scope.libros = response.data;
 				if ($scope.libros.length === 0)
 					$scope.librosVacio = false; 
+				else{
+					$scope.contadorMaximo= parseInt($scope.libros.length/$scope.cantidadMostrada, 10);
+					$scope.muestraLibros();
+				}
 			},
 				function errorCallback(response) {
 					console.log(response);
@@ -37,6 +48,24 @@ angular.module("Busqueda", ["barraNavegacion", "prestamos", "piePagina"])
 		$scope.muestraEjemplares = function (indice) {
 			window.location = "http://localhost:8080/TFG3/busquedaEjemplares.html?isbn=" + $scope.libros[indice].isbn10;
 		};
+
+		$scope.muestraLibros = function (){
+			$scope.libros2=[];
+			if($scope.contador<$scope.contadorMaximo){
+				for(i=0;i<$scope.cantidadMostrada;i++){
+					$scope.libros2[i]=$scope.libros[$scope.contador*$scope.cantidadMostrada+i];	
+				}
+				$scope.contador++;
+			}
+			else{
+				var j=0;
+				for(i=$scope.contador*$scope.cantidadMostrada;i<$scope.libros.length;i++){
+					$scope.libros2[j]=$scope.libros[i];
+					j++;
+				}
+				$scope.desactivado=true;
+			}
+			};	
 	});
 
 function getParameterByName(name, url) {

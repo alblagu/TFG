@@ -1,4 +1,4 @@
-<html ng-app="Ejemplar">
+<html ng-app="app">
 	<head>
 		<title>BIBLIOTECA</title>
 		<meta charset="UTF-8">
@@ -10,6 +10,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="modulo/app.js"></script>
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
 		<script src="componentes/prestamos/prestamos.js"></script>
 		<script src="componentes/footer/footer.js"></script>
@@ -19,8 +20,8 @@
 	<barra-navegacion></barra-navegacion>
 	<div class="container">
 		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-			<div id="caja" class="container-fluid colorBeis" ng-controller="Ejemplar2">
-				<div id="cajahijo">
+			<div  class="container-fluid colorBeis" ng-controller="Ejemplar2">
+				<div >
 					<form ng-show="!parte" >
 						<h1 class="texto-info"> Introduza el isbn del ejemplar que quiere añadir</h1>
 

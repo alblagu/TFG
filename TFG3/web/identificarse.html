@@ -1,0 +1,44 @@
+<html ng-app="app" >
+	<head>
+		<title>Identificarse</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
+		<script src="componentes/prestamos/prestamos.js"></script>
+		<script src="componentes/footer/footer.js"></script>
+		<script src="factorias/usuarioIdentificado.js"></script>
+		<script src="modulo/app.js"></script>
+		<script src="js2/identificarse.js"></script>
+		<style>
+			body{
+			background-image: url("fotos/foto.jpg") ;
+			background-repeat: no-repeat;
+			background-position: 0 0;
+			}
+			.caja{
+				top:30%;
+				background: wheat;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body ng-controller="IdentificarseController">
+		<div class="col-md-4 col-lg-4"></div>
+		<div class="caja col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			<h4>USUARIO</h4>
+			<input type="text" class="form-control" value="dni" ng-model="dni">
+			<br/>
+			<h4>CONTRASEÑA</h4>
+			<input type="text" class="form-control" value="contraseña" ng-model="password">
+			<br/>
+			<input type="button" class="btn btn-lg btn-primary" value="Identificarse" ng-click="identificarse()">
+			<br/>
+			<h4 class="text-danger">{{textoError}}</h4>
+		</div>
+	</body>
+</html>
