@@ -13,14 +13,14 @@ public class Usuario {
 	private final String dni;
 	private final String password;
 	private final String nombre;
-	private final String apellidos;
+	private final boolean administrador;
 	private final String telefono;
 
-	public Usuario(String dni, String password, String nombre, String apellidos, String telefono) {
+	public Usuario(String dni, String password, String nombre,  boolean administrador, String telefono) {
 		this.dni = dni;
 		this.password = password;
 		this.nombre = nombre;
-		this.apellidos = apellidos;
+		this.administrador=administrador;
 		this.telefono = telefono;
 	}
 	
@@ -36,8 +36,8 @@ public class Usuario {
 		return nombre;
 	}
 
-	public String getApellidos() {
-		return apellidos;
+	public boolean getAdministrador(){
+		return administrador;
 	}
 
 	public String getTelefono() {

@@ -6,7 +6,9 @@ import dominio.Prestamo;
 import dominio.Usuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -218,7 +220,7 @@ public class ServicioWeb {
 			JSONObject ejemplar = new JSONObject();
 			ejemplar.put("codigo", ejemplares.get(i).getCodigo());
 			ejemplar.put("isbn10", ejemplares.get(i).getLibro().getISBN10());
-			ejemplar.put("estado", ejemplares.get(i).getEstado());
+			ejemplar.put("disponible", ejemplares.get(i).getDisponible());
 			ejemplares2.put(ejemplar);
 		}
 		return ejemplares2.toString();
@@ -235,9 +237,9 @@ public class ServicioWeb {
 		}
 		JSONObject ejemplar2 = new JSONObject();
 		ejemplar2.put("codigo", ejemplar.getCodigo());
-		ejemplar2.put("isbn10", ejemplar.getLibro().getISBN10());
+		ejemplar2.put("titulo", ejemplar.getLibro().getTitulo());
 		ejemplar2.put("urlfoto", ejemplar.getLibro().getUrlFoto());
-		ejemplar2.put("estado", ejemplar.getEstado());
+		ejemplar2.put("disponible", ejemplar.getDisponible());
 
 		return ejemplar2.toString();
 	}
@@ -262,11 +264,23 @@ public class ServicioWeb {
 		if (libro.getBoolean("internet")) {
 			Libro nuevo = new Libro(libro.getString("isbn10"), libro.getString("isbn13"), libro.getString("titulo"), libro.getString("urlfoto"));
 			GestorLibro.create(nuevo);
-			GestorEjemplar.create(new Ejemplar(codigo, nuevo, "libre"));
+			GestorEjemplar.create(new Ejemplar(codigo, nuevo, true));
 		} else {
-			GestorEjemplar.create(new Ejemplar(codigo, new Libro(libro.getString("isbn10"), libro.getString("isbn13"), libro.getString("titulo"), libro.getString("urlfoto")), "libre"));
+			GestorEjemplar.create(new Ejemplar(codigo, new Libro(libro.getString("isbn10"), libro.getString("isbn13"), libro.getString("titulo"), libro.getString("urlfoto")), true));
 		}
 
+	}
+
+	@POST
+	@Path("ejemplares/{isbn}/{titulo}/{codigo}")
+	@Consumes(MediaType.TEXT_PLAIN)
+	public void addEjemplarToLibro(@PathParam("isbn") String isbn, @PathParam("titulo") String titulo, @PathParam("codigo") String codigo) throws ClassNotFoundException, SQLException{
+		if(null==GestorLibro.selectLibroByISBN(String.valueOf(isbn))){
+				
+		}	
+		{
+			//GestorEjemplar.create(new Ejemplar(codigo, new Libro(isbn,titulo),),libre);
+		}
 	}
 
 //	@DELETE
@@ -315,7 +329,7 @@ public class ServicioWeb {
 			nuevo.put("id", prestamos.get(i).getId());
 			nuevo.put("usuario", prestamos.get(i).getUsuario().getDNI());
 			nuevo.put("libro", prestamos.get(i).getEjemplar().getLibro().getTitulo());
-			nuevo.put("estado", prestamos.get(i).getEstado());
+			nuevo.put("estado", prestamos.get(i).getEnCurso());
 			nuevo.put("fecha_ini", prestamos.get(i).getFechaIni());
 			nuevo.put("fecha_fin", prestamos.get(i).getFechaFin());
 			prestamos2.put(nuevo);
@@ -330,16 +344,36 @@ public class ServicioWeb {
 	public void addNuevoPrestamo(@PathParam("dni") String dni, @PathParam("codigo") String codigo,String fecha) throws ClassNotFoundException, SQLException {
 		JSONObject fechaJson=new JSONObject(fecha);
 		System.out.println(GestorPrestamo.selectID());
+		System.out.println(fechaJson.get("dia")+"/"+fechaJson.get("mes")+"/"+fechaJson.get("anio"));
+		Date inicio=new Date();
+		Date fin=new Date(); 
+		System.out.println(inicio.getTime());
+		System.out.println(inicio.toString());
+		System.out.println(inicio);
 		
-		//	GestorPrestamo.createNuevoPrestamo(new Prestamo(GestorPrestamo.selectID(),codigo,dni,"enCurso",new Date(),new Date(fechaJson.get("anio"),fechaJson.get("mes"),fechaJson.get("dia"))));	
+			GestorPrestamo.createNuevoPrestamo(new Prestamo(GestorPrestamo.selectID(),GestorEjemplar.selectEjemplarByCodigo(codigo),GestorUsuario.selectUsuarioByDNI(dni),true,inicio,fin));	
 		
 	}
 
 	/**
 	 * ********************************************************************
-	 ******** USUARIOS	******
+	 ******** 			USUARIOS			******
 	*********************************************************************
 	 */
+	@GET
+	@Path("usuario/{dni}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getUsuarioByDNI(@PathParam("dni") String dni) throws ClassNotFoundException, SQLException {
+		Usuario usuario=GestorUsuario.selectUsuarioByDNI(dni);
+		if(usuario==null)throw new IllegalArgumentException("No se ha encontrado dni del usuario");
+		JSONObject usuario2 = new JSONObject();
+		usuario2.put("dni", usuario.getDNI());
+		usuario2.put("password", usuario.getPassword());
+		usuario2.put("nombre", usuario.getNombre());
+		usuario2.put("administrador", usuario.getAdministrador());
+		usuario2.put("telefono", usuario.getTelefono());
+		return usuario2.toString();
+	}
 	/**
 	 *
 	 * @param json
@@ -353,26 +387,38 @@ public class ServicioWeb {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addNuevoUsuario(String json) throws ClassNotFoundException, SQLException {
 		JSONObject usuario = new JSONObject(json);
-		if (GestorUsuario.selectUsuarioByDNI(json) != null) {
+		if (GestorUsuario.selectUsuarioByDNI(usuario.getString("dni")) != null) {
 			throw new IllegalArgumentException("Ya hay un usuario con ese dni");
 		}
 
-		GestorUsuario.createUsuario(new Usuario(usuario.getString("dni"), usuario.getString("password"), usuario.getString("nombre"), usuario.getString("apellidos"), usuario.getString("telefono")));
-
+		GestorUsuario.createUsuario(new Usuario(usuario.getString("dni"), usuario.getString("password"), usuario.getString("nombre")+" "+ usuario.getString("apellidos"),false, usuario.getString("telefono")));
 	}
 
 	@GET
-	@Path("usuario/{dni}")
+	@Path("usuarios/{filtros}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getUsuarioByDNI(@PathParam("dni") String dni) throws ClassNotFoundException, SQLException {
-		Usuario usuario=GestorUsuario.selectUsuarioByDNI(dni);
-		if(usuario==null)throw new IllegalArgumentException("No se ha encontrado dni del usuario");
-		JSONObject usuario2 = new JSONObject();
-		usuario2.put("dni", usuario.getDNI());
-		usuario2.put("password", usuario.getPassword());
-		usuario2.put("nombre", usuario.getNombre());
-		usuario2.put("telefono", usuario.getTelefono());
-		return usuario2.toString();
+	public String getAllUsuarios(@PathParam("filtros") String filtros ) throws ClassNotFoundException, SQLException{
+		JSONObject usu = new JSONObject(filtros);
+		ArrayList<Usuario> usuarios=GestorUsuario.selectAllUsuariosByFiltros(usu.getString("dni"),usu.getString("nombre"));
+
+		JSONArray usuarios2 =new JSONArray();
+		for(int i = 0 ; i<usuarios.size();i++){
+			JSONObject nuevo = new JSONObject();
+			nuevo.put("dni", usuarios.get(i).getDNI());
+			nuevo.put("password", usuarios.get(i).getPassword());
+			nuevo.put("nombre", usuarios.get(i).getNombre());
+			nuevo.put("administrador", usuarios.get(i).getAdministrador());
+			nuevo.put("telefono", usuarios.get(i).getTelefono());
+			usuarios2.put(nuevo);
+		}
+		return usuarios2.toString();
+	}
+
+	@DELETE
+	@Path("usuario/{dni}")
+	@Consumes(MediaType.TEXT_PLAIN)
+	public void deleteUsuarioByDNI(@PathParam("dni") String dni) throws ClassNotFoundException, SQLException {
+		GestorUsuario.deleteUsuarioByDNI(dni);
 	}
 	
 }

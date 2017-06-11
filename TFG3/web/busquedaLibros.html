@@ -1,4 +1,4 @@
-<html ng-app="app">
+<html ng-app="busquedaLibros">
 	<head>
 		<title>BIBLIOTECA</title>
 		<meta charset="UTF-8">
@@ -9,7 +9,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-		<script src="modulo/app.js"></script>
 		<script src="js2/busquedaLibros.js"></script>
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
 		<script src="componentes/prestamos/prestamos.js"></script>
@@ -31,8 +30,14 @@
 				</li>
 				<li class="list-group-item text-center text-danger " ng-hide="librosVacio">No se ha encontrado ningun libro</li>
 				<li class="list-group-item text-center" ng-show="!desactivado" ><ul class="pagination">
-						<li><input type="button" value="Siguientes" ng-click="muestraLibros()" </a></li>
-						<li><a href="#">&raquo;</a></li>
+		<button class="btn-lg btn-success" ng-click="muestraLibros()">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</button>
+		<button class="btn-lg btn-success" ng-click="anterior()">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</button>
+
+
 					</ul></li>
 				<li class="list-group-item text-center" ng-show="desactivado">Ya no hay mas elemetos con esa cadena</li>
 			</ul>

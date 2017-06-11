@@ -1,4 +1,4 @@
-<html ng-app="nuevoEjemplar">
+<html ng-app="nuevoEjemplarManual">
 	<head>
 		<title>BIBLIOTECA</title>
 		<meta charset="UTF-8">
@@ -12,52 +12,55 @@
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
 		<script src="componentes/prestamos/prestamos.js"></script>
 		<script src="componentes/footer/footer.js"></script>
-		<script src="js2/nuevoEjemplar.js"></script>
+		<script src="js2/nuevoEjemplarManual.js"></script>
 	</head>
 	<body>
 	<barra-navegacion></barra-navegacion>
 	<div class="container">
 		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
 			<div  class="container-fluid " ng-controller="Ejemplar2">
-				<h2 class="text-primary text-center"><u><b>Añadir Nuevo Ejemplar</b></u></h2>
+				<h2 class="text-primary text-center"><u><b>Añadir Nuevo Ejemplar Manualmente</b></u></h2>
 				<br/>
 				<div >
-					<form ng-show="!parte" class="form-horizontal" role="form" >
+					<form  class="form-horizontal" role="form" >
 						<div class="form-group">
-						<label class="col-lg-2 control-label"> ISBN 10 o 13: </label>
-						<div class="col-lg-10">
-						<input type="text" ng-model="isbn" class="form-control" >
+							<label class="col-lg-2 control-label"> ISBN 10: </label>
+							<div class="col-lg-10">
+								<input type="text" ng-model="isbn10" class="form-control" >
+							</div>
 						</div>
-						<br/>
-						<br/>
-						<input type="button" ng-click="getLibro()" value="Enviar" class="btn btn-lg btn-primary center-block">
-						<div ng-show="error">
-							<h3 class="texto-error">{{textoError}}</h3>
-							<input type="button" ng-show="mostrarManual" ng-click="generarManual()" value="generarEjemplarManualmente"  class="btn btn-lg btn-primary center-block"/>
+						<h5 ng-show="errorISBN10" class="texto-error text-center">{{textoErrorISBN10}}</h5>
+<div class="form-group">
+							<label class="col-lg-2 control-label"> ISBN 13: </label>
+							<div class="col-lg-10">
+								<input type="text" ng-model="isbn13" class="form-control" >
+							</div>
 						</div>
-						</div>
-					</form>
-					<form ng-show="parte">
-						<h4 class="text-center"> <b> ISBN: {{isbn}}.</b></h4>
-						<h4 class="text-center"> <b> TITULO: {{libro.titulo}}.</b></h4>
-						<br/>
-							<img ng-src="{{libro.urlfoto}}" class="center-block ">
-						<br/>
-						<br/>
+						<h5 ng-show="errorISBN13" class="texto-error text-center">{{textoErrorISBN13}}</h5>
 						
+						<div class="form-group">
+							<label class="col-lg-2 control-label"> <b> Titulo: </b></label>
+							<div class="col-lg-10">
+								<input type="text" ng-model="titulo" class="form-control">
+							</div>
+							<br ng-show="errorTitulo"/>
+							<br ng-show="errorTitulo"/>
+							<h5 ng-show="errorTitulo" class="texto-error text-center">El titulo no puede ser una cadena vacia</h5>
+						</div>
 						<div class="form-group">
 							<label class="col-lg-2 control-label"> <b> Codigo: </b></label>
 							<div class="col-lg-10">
 								<input type="text" ng-model="codigo" class="form-control">
 							</div>
+							<br ng-show="errorCodigo"/>
+							<br ng-show="errorCodigo"/>
+							<h5 ng-show="errorCodigo" class="texto-error text-center">El codigo no puede ser una cadena vacia</h5>
+						<h5 ng-show="errorCodigo2" class="texto-error text-center">{{textoErrorCodigo}}</h5>
 						</div>
 						<br/>
 						<br/>
-						<div class="text-center">
 						<input type="button" ng-click="addEjemplar()" value="Añadir Ejemplar" class="btn btn-lg btn-primary "/>
 						<input type="button" ng-click="cancelar()" value="Cancelar" class="btn btn-lg btn-danger "/>
-						</div> 
-						<h3 class="texto-error">{{textoError}}</h3>
 					</form>
 				</div>
 			</div>

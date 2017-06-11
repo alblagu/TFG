@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Festivos</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/estilo2.css" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
+		<script src="componentes/prestamos/prestamos.js"></script>
+		<script src="componentes/footer/footer.js"></script>
+		<script src="js2/festivos.js"></script>
+		<!-- Fechas -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+	
+	</head>
+	<body ng-app="festivos" ng-controller="FestivosController">
+		 <script type="text/javascript">
+            $(function () {
+                $('#fecha').datetimepicker  ({
+		    format: "DD/MM/YYYY",
+		    minDate:new Date()
+		    /*
+                    defaultDate: "11/1/2013"
+                 disabledDates: [
+                        moment("12/25/2013"),
+                        new Date(2013, 11 - 1, 21),
+                        "11/22/2013 00:53"
+                    ]*/
+                });
+	});
+        </script>
+	<barra-navegacion></barra-navegacion>
+	<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+		<h1 class="text-center text-primary"><u> Añadir Festivo</u></h1>
+		
+		<div class="input-group text-center ">
+			<b>Introuduce Fecha: </b>
+  			<input id="fecha" type="text" ng-model="fechaFestivo">
+			<input type="button" class="btn btn-primary" ng-click="nuevoFestivo()" value="Nuevo Festivo"/>
+		</div>
+		
+	</div> 
+	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+			<prestamos></prestamos>
+		</div>
+       
+	</body>
+</html>

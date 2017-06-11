@@ -1,0 +1,89 @@
+<html>
+	<style>
+				 .oval {
+               		 		width: 360px;
+                			height: 80px;
+                			background: white;
+                			border-radius: 40px;
+            		}
+			</style>
+	<head>
+		<title>TODO supply a title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="js2/usuarios.js"></script>
+		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
+		<script src="componentes/prestamos/prestamos.js"></script>
+	</head>
+	<body ng-app="usuarios" ng-controller="UsuariosController" style="background: #46b8da">
+		<barra-navegacion></barra-navegacion>
+
+		</br>
+		<div class="container-fluid col-xs-12 col-sm-12 col-md-8 col-lg-8">
+			<div class="oval center-block"  style="display: flex; align-items: center">
+			
+				<h1 style="float:left; margin-right:10px "><a ng-click="mostrarOcultarFiltros()"><u><b>Filtros Busqueda</b></u></a> </h1>
+			<button style="float:left " ng-click="mostrarOcultarFiltros()" class="btn btn-primary btn-lg">
+				<span class="glyphicon glyphicon-search"></span>
+			</button>
+		</div>
+		</br>
+		<form  class="form-horizontal" ng-show="mostrarFiltros" role="form"> 
+			<div class="form-group">
+				<label class="col-lg-2  col-md-2 col-sm-2 control-label"> DNI: </label>
+				<div class="col-lg-10 col-md-10 col-sm-10">
+					<input type="text" ng-model="dni" class="form-control" >
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2  col-md-2 col-sm-2 control-label"> Nombre: </label>
+				<div class="col-lg-10 col-md-10 col-sm-10">
+					<input type="text" ng-model="nombre" class="form-control" >
+				</div>
+			</div>		
+			<input type="button" class="btn btn-lg btn-primary center-block" ng-click="buscaUsuarios()" value="Buscar"/>
+		</form>
+
+
+		<table class="table">
+			<tr>
+				<td><strong>#</strong></td>
+  				<td><strong>Nombre</strong></td>
+  				<td><strong>DNI</strong></td>
+  				<td><strong>Editar</strong></td>
+  				<td><strong>Eliminar</strong></td>
+			</tr>
+			<tr ng-repeat="usu in usuarios2">
+				<td>{{contador*MAX_USUARIOS_PANTALLA-MAX_USUARIOS_PANTALLA+$index+1}}</td>
+				<td>{{usu.nombre}}</td>
+				<td>{{usu.dni}}</td>
+				<td><button class="btn btn-primary" ng-click="perfilUsuario($index)">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button></td>
+				<td>	<button class="btn btn-danger" ng-click="deleteUsuario($index)">
+				<span class="glyphicon glyphicon-remove"></span>
+			</button></td>
+			</tr>
+		</table>
+		<div class="text-center"/>
+		<button class="btn-lg btn-success" ng-click="anteriores()">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</button>
+		<button class="btn-lg btn-success" ng-click="siguientes()">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		</button>
+		</div>	
+		<h4 class="text-center text-success">{{resultado()}} usuarios de {{usuarios.length}} usuarios totales</h4>
+		
+		
+		
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+			<prestamos></prestamos>
+		</div>
+	</body>
+</html>

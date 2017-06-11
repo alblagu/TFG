@@ -1,4 +1,4 @@
-angular.module("app")
+angular.module("busquedaLibros",["barraNavegacion","piePagina","prestamos"])
 	.controller("Busqueda1", function ($scope, $http) {
 		$scope.cantidadMostrada=2;
 		$scope.contador=0;

@@ -1,6 +1,5 @@
-angular.module("app")	
-	.controller("IdentificarseController", function ($scope, $http, UsuarioFactory) {
-		console.log(UsuarioFactory.getDNI());
+angular.module("identificarse",[])	
+	.controller("IdentificarseController", function ($scope,  $http) {
 		$scope.dni = "";
 		$scope.password = "";
 		$scope.textoError = "";
@@ -17,7 +16,7 @@ angular.module("app")
 					if($scope.password!==$scope.usuario.password)
 						$scope.textoError="La contraseña es incorrecta";
 					else{
-						UsuarioFactory.anadirDNI($scope.dni);
+						localStorage.setItem('usuario', (JSON.stringify($scope.usuario || {})));
 						window.location='http://localhost:8080/TFG3/index.html';
 					}
 				},

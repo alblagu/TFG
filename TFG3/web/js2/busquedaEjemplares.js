@@ -1,4 +1,4 @@
-angular.module("app")
+angular.module("busquedaEjemplares",["barraNavegacion","piePagina","prestamos"])
 .controller("Busqueda1",function($scope,$http){
 	$scope.ejemplares=[];
 	$scope.isbn=getParameterByName("isbn",window.location);

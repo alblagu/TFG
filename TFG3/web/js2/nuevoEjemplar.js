@@ -1,12 +1,18 @@
-angular.module("app")
+angular.module("nuevoEjemplar",["barraNavegacion","piePagina","prestamos"])
 .controller("Ejemplar2",function($scope,$http){
 	$scope.isbn="";
 	$scope.codigo="";
 	$scope.error=false;
+	$scope.mostrarManual=false;
 	$scope.textoError="";
 	
 	$scope.cancelar=function(){
 		$scope.parte=false;
+	};
+
+
+	$scope.generarManual=function(){
+		windows.location('http://localhost:8080/TFG3/nuevoEjemplarManual.html');
 	};
 	
 	$scope.errores=function(){
@@ -45,6 +51,7 @@ angular.module("app")
  	 		}, 
 	 			function errorCallback(response) {
 					$scope.error=true;
+					$scope.mostrarManual=true;
 					$scope.textoError="Error en la conexion a internet o no hay ningun libro con ese isbn";
   				});
 			}
@@ -73,7 +80,7 @@ angular.module("app")
 					$scope.isbn="";
 					$scope.codigo="";
 					$scope.parte=true;
-					window.location="http://localhost:8080/TFG3/";
+					location.reload();	
  	 		}, 
 	 			function errorCallback(response) {
     	 				console.log(response);

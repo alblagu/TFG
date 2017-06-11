@@ -1,0 +1,86 @@
+<html ng-app="usuarioPerfil">
+	<head>
+		<title>TODO supply a title</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/estilo2.css" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="js2/usuarioPerfil.js"></script>
+		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
+		<script src="componentes/prestamos/prestamos.js"></script>
+	</head>
+	<body ng-controller="UsuarioPerfilController">
+		<barra-navegacion></barra-navegacion>
+		<div class="col-lg-8 col-sm-8 col-md-8  col-xs-12">
+		<h2 class="text-center text-primary"><b><u>Perfil de Usuario</u></b></h2>
+		<br/>
+		<br/>
+			<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-lg-4  col-md-4 col-sm-2 control-label"> Nombre: </label>
+				<p>12428277c</p>
+				<label class="col-lg-4  col-md-4 col-sm-2 control-label"> Nuevo Nombre: </label>
+					<div class="col-lg-6 col-md-6 col-sm-8 col-xs-10">
+						<input type="text" ng-model="nombre" class="form-control" >
+					</div>
+				<div class=" col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+				<button class="btn-lg btn-primary" ng-click="cambiaNombre()">
+					<span class="glyphicon glyphicon-pencil"></span>	
+				</button>	
+				</div>
+				<h5 ng-show="errorNombre" class="texto-error text-center">El campo nombre no puede ser vacio</h5>
+			</div>
+			</form>
+			<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-lg-4  col-md-4 col-sm-2 control-label"> DNI: </label>
+				<p>12428277c</p>
+				<label class="col-lg-4  col-md-4 col-sm-2 control-label"> Nuevo DNI: </label>
+				<div class="col-lg-6 col-md-6 col-sm-8 col-xs-10">
+						<input type="text" ng-model="dni2" class="form-control" >
+				</div>
+				<div class=" col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+				<button class="btn-lg btn-primary" ng-click="cambiaDNI()">
+					<span class="glyphicon glyphicon-pencil"></span>	
+				</button>		
+				</div>
+				<h5 ng-show="errorDNI" class="texto-error text-center">El campo nombre no puede ser vacio</h5>
+			</div>
+				<br/>	
+			</form>
+			<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-lg-4  col-md-2 col-sm-2 control-label"> Contraseña Antigua: </label>
+					<div class="col-lg-8 col-md-10 col-sm-10">
+						<input type="text" ng-model="contrasenaAntigua" class="form-control" >
+					</div>
+				<h5 ng-show="errorContrasena1" class="texto-error text-center">El campo nombre no puede ser vacio</h5>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-4  col-md-2 col-sm-2 control-label"> Contraseña Nueva: </label>
+					<div class="col-lg-8 col-md-10 col-sm-10">
+						<input type="text" ng-model="contrasenaNueva" class="form-control" >
+					</div>
+				<h5 ng-show="errorContrasena2" class="texto-error text-center">El campo nombre no puede ser vacio</h5>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-4  col-md-2 col-sm-2 control-label"> Repite Contraseña Nueva: </label>
+					<div class="col-lg-8 col-md-10 col-sm-10">
+						<input type="text" ng-model="contrasenaNueva2" class="form-control" >
+					</div>
+				<h5 ng-show="errorContrasena3" class="texto-error text-center">El campo nombre no puede ser vacio</h5>
+			</div>
+				<input type="button" class="btn-lg center-block btn-primary" value="Modificar Contraseña" ng-click="nuevaContrasena()"/>
+				
+			</form>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+			</br>	
+			</br>	
+			<prestamos></prestamos>
+		</div>
+	</body>
+</html>

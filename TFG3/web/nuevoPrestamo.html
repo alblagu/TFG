@@ -1,41 +1,72 @@
-<html ng-app="app">
+<html ng-app="nuevoPrestamo">
 	<head>
 		<title>BIBLIOTECA</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-		<link rel="stylesheet" href="css2/estilo.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/estilo2.css" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-		<script src="modulo/app.js"></script>
-		<script src="js2/nuevoPrestamo.js"></script>
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
 		<script src="componentes/prestamos/prestamos.js"></script>
 		<script src="componentes/footer/footer.js"></script>
+		<script src="js2/nuevoPrestamo.js"></script>
 	</head>
 	<body>
 	<barra-navegacion></barra-navegacion>
 
-	<div class="container" ng-controller="Prestamo">
+	<div class="container" ng-controller="prestamoController">
 		<br/>
 		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-			<h1 class="text-center"> Nuevo Prestamo</h1>
-			<form ng-show="!avanzar" >
-				<input type="text" value="dni" ng-model="dni"/>
-				<input type="text" value="codigo" ng-model="codigo"/>
-				<input type="button" value="Realizar" ng-click="obtener()" />
-				<p class="text-danger text-center" >{{textoError}}</p>
-			</form>
+			<h1 class="text-center text-primary"><u> Nuevo Prestamo</u></h1>
+			
+			<form ng-show="!avanzar" class="form-horizontal" role="form" >
+						<div class="form-group">
+						<label class="col-lg-2 col-sm-2 col-md-2 control-label"> Codigo: </label>
+						<div class="col-lg-10 col-sm-10 col-md-10">
+						<input type="text" ng-model="codigo" class="form-control" >
+						</div>
+						</div>
+						<div class="form-group">
+						<label class="col-lg-2 col-sm-2 col-md-2 control-label"> DNI: </label>
+						<div class="col-lg-10 col-sm-10 col-md-10">
+						<input type="text" ng-model="dni" class="form-control" >
+						</div>
+						</div>
+						<p class="texto-error text-center" >{{textoError}}</p>
+						<input type="button" value="Realizar" ng-click="obtener()" class="btn-lg btn-primary center-block" />
+						</form>
+
+
 			<form ng-show="avanzar">
-				<h1>Hola gente el prestamo seria hasta el dia {{dia}}/{{mes}}/{{anio}}</h1>
-				<h4>¿Cuantos dias mas quieres añadirle</h4>
+				<h1>El prestamo seria hasta el dia {{dia}}/{{mes}}/{{anio}}</h1>
+				<h4 class="text-center">¿Cuantos dias mas quieres añadirle?</h4>
+				<div class="form-group">
+					<label class="col-lg-2 col-sm-2 col-md-2 control-label"> Dias: </label>
+					<div class="col-lg-10 col-sm-10 col-md-10">
+						<input type="text" ng-model="diasMax" class="form-control" >
+					</div>
+					<br/>
+					<br/>
+				</div>
+				<div class="col-lg-6  col-sm-6 col-md-6 text-center">	
 				<img ng-src="{{ejemplar.urlfoto}}"/>
-				<p>{{usuario.dni}}</p>
-				<input type="text" ng-model="diasMax" value="dias a añadir"/>
-				<input type="button" value="Realizar" ng-click="nuevoPrestamo()" />
-				<p class="text-danger text-center" >{{textoError}}</p>
+				</div>
+				<div class="col-lg-6 col-sm-6 col-md-6 text-left">
+					<br/>
+					<h4><b>Titulo: </b>{{ejemplar.titulo}}</h4>
+					<h4><b>Codigo: </b>{{ejemplar.codigo}}</h4>
+					<h4><b>Usuario: </b>{{usuario.nombre}} {{usuario.apellidos}}</h4>
+					<h4><b>DNI: </b>{{usuario.dni}}</h4>
+				</div>
+				<div class="text-center col-lg-8 col-sm-12 col-md-12 col-xs-12">	
+					</br>
+				<input type="button" value="Realizar" ng-click="nuevoPrestamo()" class="btn-lg btn-primary" />
+				<input type="button" value="Cancelar" ng-click="cancelar()" class="btn-lg btn-danger"/>
+				</div>
+				<p class="texto-error text-center" >{{textoError}}</p>
 			</form>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">

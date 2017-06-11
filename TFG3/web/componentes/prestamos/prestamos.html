@@ -1,8 +1,6 @@
 <div  ng-controller="prestamosController">
-	<br/>
-	<br/>
-	<ul>
-		<li class="list-group-item"><strong>Nombre:</strong>{{usuario}}</li>
+	<ul >
+		<li class="list-group-item"><strong>Nombre:</strong>{{usuario.nombre}}</li>
 		<li class="list-group-item"><h1 class="text-center  "><u >Prestamos Activos</u></h1></li>
 		<li ng-repeat="prestamo in prestamos" class="list-group-item" >
 			<h4><u>Prestamo {{$index+1}}</u></h4>

@@ -1,39 +1,67 @@
-<html ng-app="app">
+<html ng-app="nuevoUsuario">
 	<head>
 		<title>BIBLIOTECA</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-		<link rel="stylesheet" href="css2/estilo.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/estilo2.css" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-		<script src="modulo/app.js"></script>
 		<script src="js2/nuevoUsuario.js"></script>
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
 		<script src="componentes/prestamos/prestamos.js"></script>
 		<script src="componentes/footer/footer.js"></script>
-		<script src="componentes/usuario/usuario.js"></script>
-		<style>
-			body{
-				background: #bce8f1;
-			}
 		</style>
 	</head>
 	<body> 
 		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
 			<barra-navegacion></barra-navegacion>
 			<br/>
-			<h2 class="text-center">Añadir Nuevo Usuario</h2>
-			<form ng-controller="Usuario1"> 
-				<input type="text" class="form-control" value="dni" ng-model="dni">
-				<input type="text" class="form-control" value="contraseña" ng-model="password">
-				<input type="text" class="form-control" value="nombre" ng-model="nombre">
-				<input type="text" class="form-control" value="apellidos" ng-model="apellidos">
-				<input type="text" class="form-control" value="telefono" ng-model="telefono">
+			<h2 class="text-center text-primary"><b><u>Añadir Nuevo Usuario</u></b></h2>
+			</br>
+			<form ng-controller="Usuario1" class="form-horizontal" role="form"> 
+				<div class="form-group">
+					<label class="col-lg-2  col-md-2 col-sm-2 control-label"> Nombre(*): </label>
+					<div class="col-lg-10 col-md-10 col-sm-10">
+						<input type="text" ng-model="nombre" class="form-control" >
+					</div>
+				</div>	
+				<h5 ng-show="errorNombre" class="texto-error text-center">El campo nombre no puede ser vacio</h5>
+				<div class="form-group">
+					<label class="col-lg-2  col-md-2 col-sm-2 control-label"> Apellidos(*): </label>
+					<div class="col-lg-10 col-md-10 col-sm-10">
+						<input type="text" ng-model="apellidos" class="form-control" >
+					</div>
+				</div>	
+				<h5 ng-show="errorApellidos" class="texto-error text-center">El campo apellidos no puede ser vacio</h5>
+								<div class="form-group">
+					<label class="col-lg-2 col-md-2 col-sm-2 control-label"> DNI(*): </label>
+					<div class="col-lg-10 col-md-10 col-sm-10">
+						<input type="text" ng-model="dni" class="form-control" >
+					</div>
+				</div>	
+				<h5 ng-show="errorDNI" class="texto-error text-center">El campo dni no puede ser vacio</h5>
+								<div class="form-group">
+					<label class="col-lg-2 col-md-2 col-sm-2 control-label"> Password(*): </label>
+					<div class="col-lg-10 col-md-10 col-sm-10">
+						<input type="text" ng-model="password" class="form-control" >
+					</div>
+				</div>	
+				<h5 ng-show="errorPassword" class="texto-error text-center">El campo password tiene que tener un tamaño superior a 7</h5>
+								<div class="form-group">
+					<label class="col-lg-2 col-md-2 col-sm-2 control-label"> Telefono(*): </label>
+					<div class="col-lg-10 col-md-10 col-sm-10">
+						<input type="text" ng-model="telefono" class="form-control" >
+					</div>
+				</div>	
+				<h5 ng-show="errorTelefono" class="text-danger text-center">El campo telefono tiene que tener 9 digitos numericos</h5>
+				<h5 ng-show="errorDNIRepetido" class="texto-error text-center">{{textoErrorDNIRepetido}}</h5>
+				
+				
 				<br/>
-				<input type="button" class="btn btn-primary btn-lg" ng-click="nuevoUsuario()" value="nuevo">
+				<input type="button" class="center-block btn btn-primary btn-lg" ng-click="nuevoUsuario()" value="Nuevo Usuario">
 			</form>
 		</div>
 

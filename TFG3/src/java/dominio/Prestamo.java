@@ -1,6 +1,7 @@
 package dominio;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 /**
  *
@@ -10,15 +11,15 @@ public class Prestamo {
 	private final int id;
 	private final Ejemplar ejemplar;
 	private final Usuario usuario;
-	private final String estado;
+	private final boolean enCurso;
 	private final Date fechaIni;
 	private final Date fechaFin;
 
-	public Prestamo(int id,Ejemplar ejemplar, Usuario usuario, String estado, Date fechaIni, Date fechaFin) {
+	public Prestamo(int id,Ejemplar ejemplar, Usuario usuario, boolean enCurso, Date fechaIni, Date fechaFin) {
 		this.id=id;
 		this.ejemplar=ejemplar;
 		this.usuario=usuario;
-		this.estado=estado;
+		this.enCurso=enCurso;
 		this.fechaIni=fechaIni;
 		this.fechaFin=fechaFin;
 	}
@@ -35,8 +36,8 @@ public class Prestamo {
 		return usuario;
 	}
 
-	public String getEstado() {
-		return estado;
+	public boolean getEnCurso() {
+		return enCurso;
 	}
 
 	public Date getFechaIni() {
