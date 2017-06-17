@@ -1,13 +1,41 @@
-<div  ng-controller="prestamosController">
+<style>
+	.usuario{
+		background-color: #f5edd7;
+	}
+
+	.fondo-titulo{
+		background-color: #c29600;		
+		color: white;
+		border-bottom: 2px yellow;
+	}
+
+	.badge{
+		background-color: #c29600;
+	}
+
+	.list-group-item#bordeBottom{
+		border-bottom : 3px solid #d2ab25;
+	}
+	.list-group-item{
+		border-right: 3px solid #d2ab25; 
+		border-left: 3px solid #d2ab25; 
+	}
+	.prestamos{
+		margin-top:10%;
+	}
+</style>
+<div class="prestamos">
 	<ul >
-		<li class="list-group-item"><strong>Nombre:</strong>{{usuario.nombre}}</li>
-		<li class="list-group-item"><h1 class="text-center  "><u >Prestamos Activos</u></h1></li>
-		<li ng-repeat="prestamo in prestamos" class="list-group-item" >
-			<h4><u>Prestamo {{$index+1}}</u></h4>
-			<strong>Fecha de Fin--> {{prestamo.fecha_fin}}</strong>
-			<p>Libro--> {{prestamo.libro}}</p>
-			<span class="badge">{{$index+1}}</span>
+		<li class="list-group-item fondo-titulo" id="bordeBottom"><h4 class="text-center  "><b >Prestamos Activos</b></h4></li>
+		<li class="list-group-item usuario"><strong>USUARIO:</strong>{{usuario.nombre}}</li>
+		<!--<li ng-repeat="prestamo in prestamos" class="list-group-item" id="{{final($index)}}" >
+			<h4 class="text-center"><u>Prestamo {{$index+1}}</u></h4>
+			<h4>Libro: {{prestamo.libro}}</h4>
+			<h4>Codigo: {{prestamo.codigo}}</h4>
+			<strong>Fecha de Fin: {{prestamo.fecha_fin}}</strong>
+			<span class="badge" >{{$index+1}}</span>
 			<br/>
-		</li>
+		</li>-->
+		<li  class="list-group-item text-center" id="bordeBottom" ng-show="{{prestamos.length===0}}"><br/><b>NO TIENE PRESTAMOS ACTIVOS</b><br/><br/></li>
 	</ul>
 </div>

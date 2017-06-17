@@ -4,20 +4,30 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-		<link rel="stylesheet" href="css2/estilo2.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/biblioteca.css" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 		<script src="js2/usuarioPerfil.js"></script>
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
 		<script src="componentes/prestamos/prestamos.js"></script>
+		<script src="componentes/footer/footer.js"></script>
+		<script src="componentes/busquedas/busquedas.js"></script>
+		<script src="componentes/catalogo/catalogo.js"></script>
 	</head>
 	<body ng-controller="UsuarioPerfilController">
 		<barra-navegacion></barra-navegacion>
-		<div class="col-lg-8 col-sm-8 col-md-8  col-xs-12">
-		<h2 class="text-center text-primary"><b><u>Perfil de Usuario</u></b></h2>
+		<busqueda></busqueda>
+		<div class="container cuerpo">
+		<div class="col-lg-7 col-md-7 col-sm-12  col-xs-12">
 		<br/>
-		<br/>
+			<div class="caja-titulo hidden-xs">
+			<img  itemprop="logo" src="imagenes/libro.png" alt="Biblioteca - uva" height="60" width="80">
+			<b class="tituloInicio"><u>Perfil Usuario</u></b>
+			<br/>
+			<br/>
+			</div>
+			<b class="tituloInicioMovil visible-xs text-center"><u>Perfil Usuario</u></b>
 			<form class="form-horizontal">
 			<div class="form-group">
 				<label class="col-lg-4  col-md-4 col-sm-2 control-label"> Nombre: </label>
@@ -77,10 +87,13 @@
 				
 			</form>
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+		<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 ">
 			</br>	
 			</br>	
 			<prestamos></prestamos>
 		</div>
+		</div>
+		<catalogo></catalogo>
+		<pie-pagina></pie-pagina>
 	</body>
 </html>

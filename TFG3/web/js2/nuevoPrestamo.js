@@ -1,17 +1,22 @@
-angular.module("nuevoPrestamo",["barraNavegacion","piePagina","prestamos"])
+angular.module("nuevoPrestamo",["barraNavegacion","piePagina","prestamos","busqueda","catalogo"])
 	.controller("prestamoController", function ($scope, $http) {
 		$scope.NUM_MAX_PRESTAMOS=3;
 		$scope.dni = "";
 		$scope.codigo = "";
 		$scope.textoError = "";
-		$scope.diasMax = "";
-		$scope.fechaHoy = new Date();
+		
+		
 		$scope.fechaFin = new Date();
 		$scope.fechaFin.setSeconds(14 * 86400); //Añado el tiempo
-		$scope.dia = $scope.fechaFin.getDate();
-		$scope.mes = $scope.fechaFin.getMonth() + 1;
-		$scope.anio = $scope.fechaFin.getFullYear();
+		$scope.textoErrorFecha="";
 		
+		$scope.fechaMinima=function(){
+			var fechaMinima=new Date();
+			fechaMinima.setSeconds(14 * 86400);
+			var mes=fechaMinima.getMonth()+1;
+			return fechaMinima.getDate()+"-"+mes+"-"+fechaMinima.getFullYear();
+		};
+	
 		$scope.cancelar=function(){
 			$scope.avanzar=false;
 		};
@@ -54,7 +59,7 @@ angular.module("nuevoPrestamo",["barraNavegacion","piePagina","prestamos"])
 				url: 'http://localhost:8080/TFG3/webresources/generic/prestamosUsu/'+$scope.usuario.dni
 		}).then(function successCallback(response) {
 			if(response.data.length>=3){
-				$scope.textoError = "Ese usuario ya tiene "+$scope.NUM_MAX_PRESTAMOS+", No puede tener mas";
+				$scope.textoError = "Ese usuario ya tiene "+$scope.NUM_MAX_PRESTAMOS+" prestamos, No puede tener mas";
 			}
 			else{
 				$scope.avanzar=true;
@@ -66,16 +71,15 @@ angular.module("nuevoPrestamo",["barraNavegacion","piePagina","prestamos"])
 
 		
 		$scope.nuevoPrestamo = function () {
-
-			if ($scope.diasMax === "")
-				$scope.diasMax = 0;
-			if (isNaN($scope.diasMax) || $scope.diasMax % 1 !== 0)
-				$scope.textoError = "Se tiene que añadir un numero o dejarlo vacio";
-			else {
-				if ($scope.diasMax > 200)
-					$scope.textoError = "No se pueden añadir mas de 200 dias";
-				else {
-					$scope.fechaFin.setSeconds($scope.diasMax*86400); //Añado el tiempo
+			$scope.textoErrorFecha="";
+			if($scope.fechaFin===null){
+				$scope.textoErrorFecha="Seleccione una fecha";
+			}
+			else{
+				if($scope.fechaFin.getDay()===6||$scope.fechaFin.getDay()===0){
+					$scope.textoErrorFecha="El prestamo no puede acabar en finde semana";		
+				}
+				else{
 					var fecha={
 						dia:$scope.fechaFin.getDate(),
 						mes:$scope.fechaFin.getMonth() + 1,
@@ -92,19 +96,12 @@ angular.module("nuevoPrestamo",["barraNavegacion","piePagina","prestamos"])
 						data: JSON.stringify(fecha)
 					}).then(function successCallback(response) {
 
-						console.log(response);
 						alert("Se ha añadido un prestamo al ejemplar con el codigo " + $scope.codigo+" hasta el dia ");
 						location.reload();	
-					},
-						function errorCallback(response) {
-							console.log(response);
-							$scope.error = true;
-							$scope.textoError = "Ya hay un prestamo con el codigo introducido";
-						});
+					});
 				}
-			}
+			}	
 		};
 
 
-	
 	});

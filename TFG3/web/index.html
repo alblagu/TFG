@@ -1,43 +1,48 @@
-<html ng-app="index">
+<html ng-app="identificarse" >
 	<head>
-		<title>BIBLIOTECA</title>
+		<title>Identificarse</title>
+		<link rel="shortcut icon" href="imagenes/libroVerde.png">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-		<link rel="stylesheet" href="css2/estilo.css" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-		<script src="js2/index.js"></script>
-		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
-		<script src="componentes/prestamos/prestamos.js"></script>
-		<script src="componentes/footer/footer.js"></script>
-		<script>
-			function deshabilitaRetroceso(){
-    				window.location.hash="no-back-button";
-    				window.location.hash="Again-No-back-button"; //chrome
-    				window.onhashchange=function(){
-					window.location.hash="no-back-button";
-				};
+		<script src="js2/identificarse.js"></script>
+		<style>
+			body{
+			background-image: url("imagenes/degradadoVerde.jpg");
+			background-repeat: no-repeat;
+			background-position: 0 0;
 			}
-		</script>
+			.caja{
+				top:5%;
+				background: white;
+				text-align: center;
+				border-radius: 44px 44px 44px 44px;
+-moz-border-radius: 44px 44px 44px 44px;
+-webkit-border-radius: 44px 44px 44px 44px;
+border: 4px solid #000000;
+			}
+		</style>
 	</head>
-	<body onload="deshabilitaRetroceso()">
-	<barra-navegacion></barra-navegacion>
-	
-	<div class="container">
-		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-			<h1 class="text-center"><u>Informacion Biblioteca</u></h1>
-			<img src="fotos/biblioteca.jpg" class="img-responsive img-thumbnail">
+	<body ng-controller="IdentificarseController">
+		<div class="col-lg-4 col-md-4 col-sm-4"></div>
+		<div class="caja col-xs-12 col-sm-5 col-md-3 col-lg-3">
 			<br/>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.</p>
+			<img src="imagenes/libroVerde.png" class="img-responsive img-thumbnail" style="border:0px">
+			<h4><b>USUARIO</b></h4>
+			<input type="text" class="form-control" value="dni" ng-model="dni">
+			<br/>
+			<h4><b>CONTRASEÑA</b></h4>
+			<input type="text" class="form-control" value="contraseña" ng-model="password">
+			<br/>
+			<input type="button" class="btn-lg btn-success" value="Identificarse" ng-click="identificarse()" >
+			<br/>
+			<label ></label>
+			<label class="checkbox"><input type="checkbox" value=""><b>Recordar Contraseña</b> </label>
+			<h4 class="text-danger">{{textoError}}</h4>
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
-			<prestamos></prestamos>
-		</div>
-	</div>
-	<pie-pagina></pie-pagina>
-
-</body>
+	</body>
 </html>

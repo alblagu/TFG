@@ -1,0 +1,50 @@
+<style>
+	.libro{
+		background-color: white;
+		margin-right: 8%;
+		margin-left: 8%;
+		margin-bottom: 4%;
+		border: 2px solid brown;
+	}
+	.foto-libro{
+		background-color:white;
+	}
+	.titulo-libro{
+		background-color: white;
+		color:black;
+	}
+	.corcho{
+		background-image: url('imagenes/corcho.jpg');
+		width: 100%;
+		border: 8px solid #6c0a13;	
+}
+
+.caja-titulo-catalogo{
+	background-color: white;
+	border: 2px solid brown;
+	margin-right: 20%;
+	margin-top:2%;
+	margin-bottom: 2%;
+	margin-left: 20%;
+}
+.titulo-catalogo{
+	color:#6c0a13;
+	font-size: 30px;
+}
+
+</style>
+<div class="container corcho text-center">
+	<div class="caja-titulo-catalogo  text-center"><b class="titulo-catalogo">Catalogo</b></div>
+	<br/>
+	<div class="col-lg-2 col-md-2 col-sm-4 col-xs-10 libro text-center" ng-repeat="libro in libros">
+			<br/>
+		<img ng-src="{{libro.urlfoto}}" class="center-block">
+		
+			<h4 class="text-center">{{libro.titulo}}</h4>	
+		
+		</div>		
+	<h1 class="text-center text-success hidden-xs" ><b>El numero de libros totales en la biblioteca es: {{libros.length}}</b></h1>
+	<h4 class="text-center text-success visible-xs" ><b>El numero de libros totales en la biblioteca es: {{libros.length}}</b></h4>
+		<input type="button" ng-click="" value="VER MAS LIBROS" class="btn-lg btn-success center-block "/>
+		<br/>
+</div>

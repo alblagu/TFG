@@ -56,7 +56,7 @@ public class GestorEjemplar {
 	 * @throws java.sql.SQLException al ocurrir algun problema con la base de datos.
 	 */
 	public static void create(Ejemplar ejemplar) throws ClassNotFoundException, SQLException {
-		String laQuery=("insert into BIBLIOTECA.EJEMPLAR(CODIGO,LIBRO,ESTADO) values('"+ejemplar.getCodigo()+"','"+ejemplar.getLibro().getISBN10()+"','"+ejemplar.getDisponible()+"')");
+		String laQuery=("insert into BIBLIOTECA.EJEMPLAR(CODIGO,LIBRO,DISPONIBLE) values('"+ejemplar.getCodigo()+"','"+ejemplar.getLibro().getISBN10()+"','"+ejemplar.getDisponible()+"')");
 		ConexionBD.getInstancia().update(laQuery);
 	}
 
@@ -68,6 +68,11 @@ public class GestorEjemplar {
 	 */
 	public static void deleteByCodigo(String codigo) throws ClassNotFoundException, SQLException {
 		String laQuery=("delete * from BIBLIOTECA.EJEMPLAR where codigo='"+codigo+"'");
+		ConexionBD.getInstancia().update(laQuery);
+	}
+
+	static void updateEjemplarCambiaDisponible(Ejemplar ejemplar) throws ClassNotFoundException, SQLException {
+		String laQuery=("update BIBLIOTECA.EJEMPLAR SET DISPONIBLE='"+!ejemplar.getDisponible()+"' WHERE codigo='"+ejemplar.getCodigo()+"'");
 		ConexionBD.getInstancia().update(laQuery);
 	}
 	

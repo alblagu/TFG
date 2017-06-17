@@ -7,6 +7,7 @@ import dominio.Usuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
@@ -119,6 +120,14 @@ public class ServicioWeb {
 		return libroJson.toString();
 	}
 
+	@Path("libros/aleatorios")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getLibrosAleatorios(@PathParam("isbn") String isbn) throws ClassNotFoundException, SQLException {
+		return getLibros(GestorLibro.selectLibrosAleatorios());
+		
+	}
+	
+	
 	/**
 	 * Realiza una busqueda en el sistema de los libros que tienen la cadena
 	 * pasada en su isbn ya sea en el de formato 10 numeros o el de 13.
@@ -157,9 +166,7 @@ public class ServicioWeb {
 	@Path("libros/busqueda2/{titulo}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getLibrosBusquedaTitutlo(@PathParam("titulo") String titulo) throws ClassNotFoundException, SQLException {
-		ArrayList<Libro> libros = GestorLibro.selectLibrosByTitulo(titulo);
-		return getLibros(libros);
-
+		return getLibros(GestorLibro.selectLibrosByTitulo(titulo));
 	}
 
 	/**
@@ -308,12 +315,28 @@ public class ServicioWeb {
 	 * de datos.
 	 */
 	@GET
-	@Path("prestamos/{ejemplar}")
+	@Path("prestamo/{codigo}/{dni}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String getPrestamosByEjemplar(@PathParam("ejemplar") String ejemplar) throws ClassNotFoundException, SQLException {
-		return prestamosToString(GestorPrestamo.selectPrestamosByEjemplar(ejemplar));
+	public String getPrestamosByEjemplar(@PathParam("codigo") String codigo, @PathParam("dni") String dni) throws ClassNotFoundException, SQLException {
+		Prestamo prestamo=(GestorPrestamo.selectPrestamosByEjemplar(codigo));
+		if(prestamo==null || !prestamo.getUsuario().getDNI().equals(dni)){
+			throw new IllegalArgumentException("No hay un prestamo en activo para los datos introducidos");
+		}
+		else{
+			JSONObject nuevo = new JSONObject();
+			nuevo.put("titulo", prestamo.getEjemplar().getLibro().getTitulo());
+			nuevo.put("urlfoto",prestamo.getEjemplar().getLibro().getUrlFoto());
+			nuevo.put("fecha_inicio", prestamo.getFechaIni());
+			nuevo.put("fecha_fin", prestamo.getFechaFin());
+			return nuevo.toString();
+		}
+			
 	}
 
+
+
+	
+	
 	@GET
 	@Path("prestamosUsu/{usuario}")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -326,11 +349,8 @@ public class ServicioWeb {
 
 		for (int i = 0; i < prestamos.size(); i++) {
 			JSONObject nuevo = new JSONObject();
-			nuevo.put("id", prestamos.get(i).getId());
-			nuevo.put("usuario", prestamos.get(i).getUsuario().getDNI());
 			nuevo.put("libro", prestamos.get(i).getEjemplar().getLibro().getTitulo());
-			nuevo.put("estado", prestamos.get(i).getEnCurso());
-			nuevo.put("fecha_ini", prestamos.get(i).getFechaIni());
+			nuevo.put("codigo",prestamos.get(i).getEjemplar().getCodigo());
 			nuevo.put("fecha_fin", prestamos.get(i).getFechaFin());
 			prestamos2.put(nuevo);
 		}
@@ -344,14 +364,15 @@ public class ServicioWeb {
 	public void addNuevoPrestamo(@PathParam("dni") String dni, @PathParam("codigo") String codigo,String fecha) throws ClassNotFoundException, SQLException {
 		JSONObject fechaJson=new JSONObject(fecha);
 		System.out.println(GestorPrestamo.selectID());
-		System.out.println(fechaJson.get("dia")+"/"+fechaJson.get("mes")+"/"+fechaJson.get("anio"));
+		System.out.println(fechaJson.getInt("dia")+"/"+fechaJson.get("mes")+"/"+fechaJson.get("anio"));
 		Date inicio=new Date();
-		Date fin=new Date(); 
-		System.out.println(inicio.getTime());
-		System.out.println(inicio.toString());
+		GregorianCalendar fin=new GregorianCalendar(fechaJson.getInt("anio"), fechaJson.getInt ("mes")-1, fechaJson.getInt("dia"));
+		Date fin2=fin.getTime(); 
 		System.out.println(inicio);
+		System.out.println(fin);
+		System.out.println(fin2);
 		
-			GestorPrestamo.createNuevoPrestamo(new Prestamo(GestorPrestamo.selectID(),GestorEjemplar.selectEjemplarByCodigo(codigo),GestorUsuario.selectUsuarioByDNI(dni),true,inicio,fin));	
+		GestorPrestamo.createNuevoPrestamo(new Prestamo(GestorPrestamo.selectID()+1,GestorEjemplar.selectEjemplarByCodigo(codigo),GestorUsuario.selectUsuarioByDNI(dni),true,inicio,fin2));	
 		
 	}
 

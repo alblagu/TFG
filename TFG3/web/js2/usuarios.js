@@ -1,4 +1,4 @@
-angular.module("usuarios", ["barraNavegacion","prestamos"])
+angular.module("usuarios", ["barraNavegacion","busqueda","piePagina","prestamos","catalogo"])
 	.controller("UsuariosController", function ($scope, $http) {
 
 		$scope.usuario = JSON.parse(localStorage.getItem('usuario'));
@@ -6,13 +6,10 @@ angular.module("usuarios", ["barraNavegacion","prestamos"])
 		$scope.usuarios2=[];
 		$scope.dni = "";
 		$scope.nombre = "";
-		$scope.mostrarFiltros = false;
 		$scope.MAX_USUARIOS_PANTALLA=6;
 		$scope.contador=0;
 
-		$scope.mostrarOcultarFiltros = function () {
-			$scope.mostrarFiltros = !$scope.mostrarFiltros;
-		};
+	
 
 
 		$scope.buscaUsuarios = function () {

@@ -1,4 +1,4 @@
-angular.module("usuarioPerfil", ["barraNavegacion","prestamos"])
+angular.module("usuarioPerfil", ["barraNavegacion","busqueda","prestamos","piePagina","catalogo"])
 	.controller("UsuarioPerfilController", function ($scope, $http) {
 	
 	$scope.dni= getParameterByName("dni", window.location);

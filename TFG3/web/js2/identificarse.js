@@ -17,7 +17,7 @@ angular.module("identificarse",[])
 						$scope.textoError="La contraseña es incorrecta";
 					else{
 						localStorage.setItem('usuario', (JSON.stringify($scope.usuario || {})));
-						window.location='http://localhost:8080/TFG3/index.html';
+						window.location='http://localhost:8080/TFG3/inicio.html';
 					}
 				},
 					function errorCallback(response) {

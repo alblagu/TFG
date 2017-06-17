@@ -1,4 +1,4 @@
-angular.module("busquedaLibros",["barraNavegacion","piePagina","prestamos"])
+angular.module("busquedaLibros",["barraNavegacion","piePagina","prestamos","busqueda","catalogo"])
 	.controller("Busqueda1", function ($scope, $http) {
 		$scope.cantidadMostrada=2;
 		$scope.contador=0;
@@ -13,7 +13,6 @@ angular.module("busquedaLibros",["barraNavegacion","piePagina","prestamos"])
 				method: 'GET',
 				url: 'http://localhost:8080/TFG3/webresources/generic/libros/busqueda/' + $scope.busqueda
 			}).then(function successCallback(response) {
-				console.log(response);
 				$scope.libros = response.data;
 				if ($scope.libros.length === 0)
 					$scope.librosVacio = false;

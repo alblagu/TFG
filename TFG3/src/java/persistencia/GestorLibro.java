@@ -92,14 +92,25 @@ public class GestorLibro {
 	 * @throws java.sql.SQLException al ocurrir algun problema con la base de datos.
 	 */
 	public static ArrayList<Libro> selectLibrosByTitulo(String titulo) throws ClassNotFoundException, SQLException{
-        	ArrayList<Libro> libros= new ArrayList<>();
         	String laQuery = ("select * from BIBLIOTECA.LIBRO where titulo LIKE '%"+titulo+"%'");
         	//String laQuery = ("select * from BIBLIOTECA.LIBRO where  UPPER(translate(titulo, ‘áéíóúÁÉÍÓÚ’, ‘aeiouAEIOU’))  LIKE UPPER(translate('%"+titulo+"%', ‘áéíóúÁÉÍÓÚ’, ‘aeiouAEIOU’");
-        	ResultSet rs = ConexionBD.getInstancia().select(laQuery);
+        	ResultSet rs = ConexionBD.getInstancia().select(laQuery);		
+        	ArrayList<Libro> libros= new ArrayList<Libro>();
         	while (rs.next()) {
 			libros.add(new Libro(rs.getString("isbn10"),rs.getString("isbn13"),rs.getString("titulo"),rs.getString("urlfoto")));
         	}
         	return libros;
 		
+	}
+	
+	
+	public static ArrayList<Libro> selectLibrosAleatorios() throws SQLException, ClassNotFoundException{
+//		String laQuery="SELECT TOP 6 from BIBLIOTECA.LIBRO";
+//		ResultSet rs = ConexionBD.getInstancia().select(laQuery);
+//	ArrayList<Libro> libros= new ArrayList<Libro>();
+//		while (rs.next()) {
+//			libros.add(new Libro(rs.getString("isbn10"),rs.getString("isbn13"),rs.getString("titulo"),rs.getString("urlfoto")));
+//        	}
+        	return selectAll();
 	}
 }

@@ -16,15 +16,13 @@ import java.util.ArrayList;
  */
 public class GestorPrestamo {
 
-	public static ArrayList<Prestamo> selectPrestamosByEjemplar(String ejemplar) throws ClassNotFoundException, SQLException {
-		String laQuery = ("select * from BIBLIOTECA.PRESTAMO where ejemplar='"+ejemplar+"'");
+	public static Prestamo selectPrestamosByEjemplar(String codigo) throws ClassNotFoundException, SQLException {
+		String laQuery = ("select * from BIBLIOTECA.PRESTAMO where ejemplar='"+codigo+"' AND enCurso='true'");
 		ResultSet rs =ConexionBD.getInstancia().select(laQuery);
-		ArrayList<Prestamo> prestamos=new ArrayList<>(); 
-		
 		while(rs.next()){
-			prestamos.add(new Prestamo(rs.getInt("id"),GestorEjemplar.selectEjemplarByCodigo(rs.getString("ejemplar")),GestorUsuario.selectUsuarioByDNI(rs.getString("usuario")),rs.getBoolean("enCurso"),rs.getDate("fecha_ini"),rs.getDate("fecha_fin")));
+			return new Prestamo(rs.getInt("id"),GestorEjemplar.selectEjemplarByCodigo(rs.getString("ejemplar")),GestorUsuario.selectUsuarioByDNI(rs.getString("usuario")),rs.getBoolean("enCurso"),rs.getDate("fecha_ini"),rs.getDate("fecha_fin"));
 	}
-		return prestamos;	
+		return null;	
         	
 	}
 
@@ -40,7 +38,9 @@ public class GestorPrestamo {
 	}
 
 	public static void createNuevoPrestamo(Prestamo prestamo) throws ClassNotFoundException, SQLException {
-		String laQuery=("insert into BIBLIOTECA.PRESTAMO(ID,USUARIO,EJEMPLAR,ENCURSO,FECHA_INI,FECHA_FIN) values("+ prestamo.getId()+",'"+prestamo.getUsuario().getDNI()+"','"+prestamo.getEjemplar().getCodigo()+"','"+prestamo.getEnCurso()+"','"+prestamo.getFechaIni()+"','"+prestamo.getFechaFin()+"')");
+	String laQuery=("insert into BIBLIOTECA.PRESTAMO(ID,USUARIO,EJEMPLAR,ENCURSO,FECHA_INI,FECHA_FIN) values("+ prestamo.getId()+",'"+prestamo.getUsuario().getDNI()+"','"+prestamo.getEjemplar().getCodigo()+"','"+prestamo.getEnCurso()+"','2016-1-1','2016-2-1')");
+	GestorEjemplar.updateEjemplarCambiaDisponible(prestamo.getEjemplar());
+
 		ConexionBD.getInstancia().update(laQuery);
 	}
 

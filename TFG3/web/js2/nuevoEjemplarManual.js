@@ -14,7 +14,7 @@ angular.module("nuevoEjemplarManual",["barraNavegacion","piePagina","prestamos"]
 	$scope.textoErrorCodigo="";
 	
 	$scope.cancelar=function(){
-		windows.location('http://localhost:8080/TFG3/nuevoEjemplar.html');
+		window.location='http://localhost:8080/TFG3/nuevoEjemplar.html';
 	};
 
 	$scope.erroresISBN10=function(){
@@ -30,9 +30,10 @@ angular.module("nuevoEjemplarManual",["barraNavegacion","piePagina","prestamos"]
 				$scope.textoErrorISBN10="El isbn tiene que tener 10 digitos";
 			}
 			else{
-				if(isNaN($scope.isbn10)||$scope.isbn10%1!==0){
+				if((isNaN($scope.isbn10))||($scope.isbn10%1!==0)){
 					$scope.errorISBN10=true;
 					$scope.textoError="El isbn10 tiene que tener solo numeros";
+					
 				}
 		}
 		}

@@ -1,38 +1,40 @@
 <html>
-	<style>
-				 .oval {
-               		 		width: 360px;
-                			height: 80px;
-                			background: white;
-                			border-radius: 40px;
-            		}
-			</style>
 	<head>
 		<title>TODO supply a title</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/biblioteca.css" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 		<script src="js2/usuarios.js"></script>
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
 		<script src="componentes/prestamos/prestamos.js"></script>
+		<script src="componentes/footer/footer.js"></script>
+		<script src="componentes/busquedas/busquedas.js"></script>
+		<script src="componentes/catalogo/catalogo.js"></script>
 	</head>
-	<body ng-app="usuarios" ng-controller="UsuariosController" style="background: #46b8da">
+	<body ng-app="usuarios" ng-controller="UsuariosController" >
 		<barra-navegacion></barra-navegacion>
+		<busqueda></busqueda>
 
-		</br>
-		<div class="container-fluid col-xs-12 col-sm-12 col-md-8 col-lg-8">
-			<div class="oval center-block"  style="display: flex; align-items: center">
+		
+		<div class="container cuerpo">
+		<div class=" col-xs-12 col-sm-12 col-md-7 col-lg-7">
 			
-				<h1 style="float:left; margin-right:10px "><a ng-click="mostrarOcultarFiltros()"><u><b>Filtros Busqueda</b></u></a> </h1>
-			<button style="float:left " ng-click="mostrarOcultarFiltros()" class="btn btn-primary btn-lg">
-				<span class="glyphicon glyphicon-search"></span>
-			</button>
-		</div>
-		</br>
-		<form  class="form-horizontal" ng-show="mostrarFiltros" role="form"> 
+			<br/>
+			<div class="caja-titulo hidden-xs">
+			<img  itemprop="logo" src="imagenes/libro.png" alt="Biblioteca - uva" height="60" width="80">
+			<b class="tituloInicio"><u>Usuarios</u></b>
+			<br/>
+			<br/>
+			</div>
+			<b class="tituloInicioMovil visible-xs text-center"><u>Usuarios</u></b>
+			
+			
+			
+		<form  class="form-horizontal"  role="form"> 
 			<div class="form-group">
 				<label class="col-lg-2  col-md-2 col-sm-2 control-label"> DNI: </label>
 				<div class="col-lg-10 col-md-10 col-sm-10">
@@ -82,8 +84,12 @@
 		
 		
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+		<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 ">
+			<br/>
+			<br/>
 			<prestamos></prestamos>
 		</div>
+</div>
+		<pie-pagina></pie-pagina>
 	</body>
 </html>

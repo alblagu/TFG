@@ -1,47 +1,60 @@
-<style>
-	.contenedor-navbar{
-		height: 50px;
-		background-color:gainsboro;
-		width: 100%;
-	}
-</style>
-<div  ng-app="BarraNavegacion" ng-controller="Busqueda" class="container-fluid contenedor-navbar" >
-	<br/>
+		<style>
+			.navbar-color{
+				background-color:  #6c0a13;
+			}
+		
+			.menu-navbar{
+				margin-top: 15px;
+				color:white;	
+				font-weight: bold;
+			}
+			</style>
 	<header>
-		<nav class="navbar-inverse navbar-default navbar-fixed-top" >
-			<div class="container-fluid">
+		<nav class="container-fluid contenedor-navbar navbar-inverse navbar-static-top navbar-color " >
+			<div class="container">
 				<div class="navbar-header">
+					<a id='logo' itemprop='url' title='You are here' class='logo'>
+<span>
+	<img  class="hidden-xs hidden-sm" itemprop="logo" src="imagenes/logo.gif" alt="Biblioteca - uva" height="90" width="100">
+	<img  class="visible-sm" itemprop="logo" src="imagenes/logo.gif" alt="Biblioteca - uva" height="60" width="70">
+</span></a>
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1">
 						<span class="sr-only">Menu</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="http://localhost:8080/TFG3/index.html" class="navbar-brand" > Biblioteca </a>
+					<img class="hidden-xs hidden-sm" alt="biblioteca" src="imagenes/titulo.png"/>
 				</div>
 				<div class="collapse navbar-collapse" id="navbar-1">
-					<form class="navbar-form navbar-left">
-						<div class="form-group" >
-							<input type="text" class="form-control" placeholder="Buscar" ng-model="busqueda">
-							<button  ng-click="realizarBusqueda()" class="btn btn-primary">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</div>
-					</form>
+					
 					<ul class="nav navbar-nav navbar-right">
-						<li ng-show="usuario.administrador"><a href="http://localhost:8080/TFG3/nuevoUsuario.html">Consultar Libro</a> </li>
-						<li class="active"><a href="">Añadir Ejemplar </a> </li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" >Prestamos<span class="caret"></span></a> 
+							<li ng-show="!usuario.administrador"><a class="menu-navbar" href="http://localhost:8080/TFG3/usuarioPerfil.html">PERFIL</a></li>
+							
+						<li ng-show="usuario.administrador"><a class="menu-navbar" href="http://localhost:8080/TFG3/nuevoEjemplar.html">NUEVO EJEMPLAR</a></li>
+						<li ng-show="usuario.administrador" class="dropdown"><a  href="#" class="dropdown-toggle menu-navbar" data-toggle="dropdown" >USUARIOS<span class="caret"></span></a> 
 							<ul class="dropdown-menu">
-								<li><a href="http://localhost:8080/TFG3/nuevoEjemplar.html">Item1</a></li>	
+								<li><a href="http://localhost:8080/TFG3/usuarios.html">Usuarios</a></li>	
+								<li><a href="http://localhost:8080/TFG3/nuevoUsuario.html">Nuevo Usuario</a></li>			
+							</ul>
+						</li>	
+						
+
+					<li ng-show="usuario.administrador" class="dropdown"><a  href="#" class="dropdown-toggle menu-navbar" data-toggle="dropdown" >PRESTAMOS<span class="caret"></span></a> 
+							<ul class="dropdown-menu">
 								<li><a href="http://localhost:8080/TFG3/nuevoPrestamo.html">Nuevo Prestamo</a></li>	
+								<li><a href="http://localhost:8080/TFG3/finalizarPrestamo.html">Finalizar Prestamo</a></li>	
 								<li class="divider"></li>	
-								<li> <a ng-click="logout()">Logout</a></li>	
+								<li> <a href="http://localhost:8080/TFG3/festivos.html">Añadir Festivos</a></li>
+								
 							</ul>
 						</li>
+						<li ><a class="menu-navbar" ng-click="logout()">DESCONECTAR</a> </li>
 					</ul>	
 				</div>
 			</div>
 		</nav>
 	</header>
-</div>
+		
+			
+

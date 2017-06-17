@@ -1,4 +1,4 @@
-angular.module("nuevoEjemplar",["barraNavegacion","piePagina","prestamos"])
+angular.module("nuevoEjemplar",["barraNavegacion","busqueda","piePagina","prestamos"])
 .controller("Ejemplar2",function($scope,$http){
 	$scope.isbn="";
 	$scope.codigo="";
@@ -12,7 +12,7 @@ angular.module("nuevoEjemplar",["barraNavegacion","piePagina","prestamos"])
 
 
 	$scope.generarManual=function(){
-		windows.location('http://localhost:8080/TFG3/nuevoEjemplarManual.html');
+		window.location='http://localhost:8080/TFG3/nuevoEjemplarManual.html';
 	};
 	
 	$scope.errores=function(){
@@ -52,7 +52,7 @@ angular.module("nuevoEjemplar",["barraNavegacion","piePagina","prestamos"])
 	 			function errorCallback(response) {
 					$scope.error=true;
 					$scope.mostrarManual=true;
-					$scope.textoError="Error en la conexion a internet o no hay ningun libro con ese isbn";
+					$scope.textoError="No se ha encontrado ningun libro con ese ISBN";
   				});
 			}
 			};

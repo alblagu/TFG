@@ -1,11 +1,12 @@
 <html ng-app="nuevoEjemplarManual">
 	<head>
 		<title>BIBLIOTECA</title>
+		<link rel="shortcut icon" href="imagenes/libroVerde.png">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-		<link rel="stylesheet" href="css2/estilo2.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/biblioteca.css" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -16,7 +17,7 @@
 	</head>
 	<body>
 	<barra-navegacion></barra-navegacion>
-	<div class="container">
+	<div class="container cuerpo">
 		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
 			<div  class="container-fluid " ng-controller="Ejemplar2">
 				<h2 class="text-primary text-center"><u><b>Añadir Nuevo Ejemplar Manualmente</b></u></h2>
@@ -24,23 +25,23 @@
 				<div >
 					<form  class="form-horizontal" role="form" >
 						<div class="form-group">
-							<label class="col-lg-2 control-label"> ISBN 10: </label>
-							<div class="col-lg-10">
+							<label class="col-lg-2 col-md-2 col-sm-2 control-label"> ISBN 10: </label>
+							<div class="col-lg-10 col-md-10 col-sm-10">
 								<input type="text" ng-model="isbn10" class="form-control" >
 							</div>
 						</div>
 						<h5 ng-show="errorISBN10" class="texto-error text-center">{{textoErrorISBN10}}</h5>
 <div class="form-group">
-							<label class="col-lg-2 control-label"> ISBN 13: </label>
-							<div class="col-lg-10">
+							<label class="col-lg-2 col-md-2 col-sm-2 control-label"> ISBN 13: </label>
+							<div class="col-lg-10 col-md-10 col-sm-10">
 								<input type="text" ng-model="isbn13" class="form-control" >
 							</div>
 						</div>
 						<h5 ng-show="errorISBN13" class="texto-error text-center">{{textoErrorISBN13}}</h5>
 						
 						<div class="form-group">
-							<label class="col-lg-2 control-label"> <b> Titulo: </b></label>
-							<div class="col-lg-10">
+							<label class="col-lg-2 col-md-2 col-sm-2 control-label"> <b> Titulo: </b></label>
+							<div class="col-lg-10 col-md-10 col-sm-10">
 								<input type="text" ng-model="titulo" class="form-control">
 							</div>
 							<br ng-show="errorTitulo"/>
@@ -48,8 +49,8 @@
 							<h5 ng-show="errorTitulo" class="texto-error text-center">El titulo no puede ser una cadena vacia</h5>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 control-label"> <b> Codigo: </b></label>
-							<div class="col-lg-10">
+							<label class="col-lg-2 col-md-2 col-sm-2 control-label"> <b> Codigo: </b></label>
+							<div class="col-lg-10 col-md-10 col-sm-10">
 								<input type="text" ng-model="codigo" class="form-control">
 							</div>
 							<br ng-show="errorCodigo"/>
@@ -59,14 +60,19 @@
 						</div>
 						<br/>
 						<br/>
+						<div class="text-center">
 						<input type="button" ng-click="addEjemplar()" value="Añadir Ejemplar" class="btn btn-lg btn-primary "/>
 						<input type="button" ng-click="cancelar()" value="Cancelar" class="btn btn-lg btn-danger "/>
+						</div>
 					</form>
 				</div>
 			</div>
 			<br/>
 		</div>
+		
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+			<br/>
+			<br/>
 			<prestamos></prestamos>
 		</div>
 	</div>	

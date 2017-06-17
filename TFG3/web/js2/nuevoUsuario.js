@@ -1,4 +1,4 @@
-angular.module("nuevoUsuario", ["barraNavegacion", "piePagina", "prestamos"])
+angular.module("nuevoUsuario", ["barraNavegacion", "busqueda" ,"piePagina", "prestamos","catalogo"])
 	.controller("Usuario1", function ($scope, $http) {
 		$scope.nombre = "";
 		$scope.apellidos = "";

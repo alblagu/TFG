@@ -1,0 +1,55 @@
+body{
+	background-image: url("../imagenes/fondoTextura.jpg");
+}
+.cuerpo{
+	background-color: white;
+	
+}
+.caja-titulo{
+	position: relative;
+}
+.caja-titulo b
+{
+	position:absolute;
+	top:0%;
+	color:#6c0a13; 
+	font-size: 50px;
+	margin-left: 20px;
+}
+
+.tituloInicioMovil{
+	color:#6c0a13; 
+	font-size: 30px;
+}
+	
+.texto-info{
+	font-family: cursive;	
+	color:#255625;
+}
+
+.texto-error{
+	font-style: italic;
+	color:#c9302c;	
+}
+
+.hasta-final{
+	height:auto;
+}
+
+.fecha-minima{
+	margin-top:5%;
+	margin-bottom: 5%;
+	margin-left:30%;	
+}
+
+.foto-libro{
+	margin-left:20%;
+}
+
+.botones-nuevo-prestamo{
+	margin-top:5%;
+}
+.libro-busqueda{
+	margin-bottom: 5%;
+	border:2px solid yellowgreen;
+}

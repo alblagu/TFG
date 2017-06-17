@@ -1,0 +1,65 @@
+<html ng-app="index">
+	<head>
+		<title>BIBLIOTECA</title>
+		<link rel="shortcut icon" href="imagenes/libroVerde.png">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/biblioteca.css" type="text/css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="js2/index.js"></script>
+		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
+		<script src="componentes/prestamos/prestamos.js"></script>
+		<script src="componentes/footer/footer.js"></script>
+		<script src="componentes/busquedas/busquedas.js"></script>
+		<script src="componentes/catalogo/catalogo.js"></script>
+		<script>
+			function deshabilitaRetroceso(){
+    				window.location.hash="no-back-button";
+    				window.location.hash="Again-No-back-button"; //chrome
+    				window.onhashchange=function(){
+					window.location.hash="no-back-button";
+				};
+			}
+		</script>
+	</head>
+	<body onload="deshabilitaRetroceso()">
+	<barra-navegacion></barra-navegacion>
+	<busqueda></busqueda>
+	<div class="container cuerpo" >
+		<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 ">
+			<br/>
+			<div class="caja-titulo hidden-xs">
+			<img  itemprop="logo" src="imagenes/libro.png" alt="Biblioteca - uva" height="60" width="80">
+			<b class="tituloInicio"><u>Bienvenido</u></b>
+			<br/>
+			<br/>
+			</div>
+			<b class="tituloInicioMovil visible-xs text-center"><u>Bienvenido</u></b>
+	
+			
+			<img src="imagenes/biblioteca.jpg" class="img-responsive img-thumbnail" style="border:0px">
+			<br/><br/>
+			
+			<p>Bienvenido a la pagina web de la biblioteca del departamento de matemáticas de ingeniería informática de la UVA. 
+Aquí podrás estar al tanto sobre los diferentes libros que hay disponibles y saber si tienen ejemplares libres o no.
+Además podrás estar al tanto de tus préstamos para que no se te pase devolver los ejemplares antes de la fecha de finalización.</p>
+		</div>
+		
+		<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 ">
+			<prestamos></prestamos>
+		</div>	
+		
+	</div>
+	<div class="cuerpo container">
+		<br/><br/>
+	<catalogo></catalogo>
+	<br/><br/>
+	</div>
+	<pie-pagina></pie-pagina>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<style>
+	.busqueda{		
+				background-color: #f5edd7;  	
+				border-top: 6px solid #8A1414;  
+			}
+			.form-control#buscador{
+				width: 150px;
+				margin-bottom: 5px;
+			}
+</style>
+
+
+<div class="busqueda container-fluid text-center "  >
+		<form class="navbar-form " >
+			<div class="form-group " >
+			<b>BUSQUEDA DE LIBROS  </b>	
+			<input type="text" class="form-control hidden-xs"  placeholder="Buscar" ng-model="busqueda">
+			<div class="visible-xs ">
+			<input type="text" class="form-control center-block " id="buscador" placeholder="Buscar" ng-model="busqueda">
+			</div>
+			
+			
+			<button  ng-click="realizarBusqueda()" class="btn btn-primary">
+				<span class="glyphicon glyphicon-search"></span>
+			</button>
+			<a ng-click="mostrarFiltros()" > BúsquedaAvanzada>></a>
+		</div>
+			<div ng-show="filtros">
+<div class="radio">
+	<br/>
+	<label ><b>TipoBusqueda:</b> </label>
+ <label class="radio-inline"><input type="radio" name="optradio">ISBN: </label>
+ <label class="radio-inline"><input type="radio" name="optradio">Nombre: </label>
+</div>
+				<div>
+					<label ><b>Categorias:</b> </label>
+					<label class="checkbox-inline"><input type="checkbox" value="">Informatica</label>
+					<label class="checkbox-inline"><input type="checkbox" value="">Matematicas</label>
+					<label class="checkbox-inline"><input type="checkbox" value="">Fisica</label>
+				</div>
+
+
+				
+			</div>
+	</form>
+</div>

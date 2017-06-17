@@ -11,6 +11,15 @@ angular.module("prestamos",[])
 		},
 			function errorCallback(response) {
 			});
+
+		$scope.final=function(indice) {
+			if($scope.prestamos.length-1===indice){
+				return "bordeBottom";
+			}
+			else{
+				return "otro";
+			}
+		};
 			
 })
 	.component("prestamos", {

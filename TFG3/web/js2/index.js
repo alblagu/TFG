@@ -1,2 +1,2 @@
-angular.module("index",["barraNavegacion","piePagina","prestamos"]);
+angular.module("index",["barraNavegacion","busqueda","piePagina","prestamos","catalogo"]);
 

@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
-		<link rel="stylesheet" href="css2/estilo.css" type="text/css"/>
+		<link rel="stylesheet" href="css2/biblioteca.css" type="text/css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -13,22 +13,59 @@
 		<script src="componentes/barra-navegacion/barra-navegacion.js"></script>
 		<script src="componentes/prestamos/prestamos.js"></script>
 		<script src="componentes/footer/footer.js"></script>
+		<script src="componentes/busquedas/busquedas.js"></script>
+		<script src="componentes/catalogo/catalogo.js"></script>
 	</head>
 	<body ng-controller="Busqueda1">
 	<barra-navegacion></barra-navegacion>
+	<busqueda></busqueda>
 
-	<div class="container">
-		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-			<ul>
-				<br>
-				<li class="list-group-item text-center text-info"><h4>Se han encontrado {{libros.length}} con la cadena "{{busqueda}}" siendo los siguientes:</h4></li>
-				<li ng-repeat="libro in libros2" class="list-group-item text-center">
-					<img ng-src="{{libro.urlfoto}}">
-					<strong>Titulo: {{libro.titulo}}</strong>
-					<input type="button" class="btn btn-lg btn-primary" value="VerEjemplares" ng-click="muestraEjemplares($index)">
+	<div class="container cuerpo">
+		<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 ">
+			
+			<br/>
+			<div class="caja-titulo hidden-xs">
+			<img  itemprop="logo" src="imagenes/libro.png" alt="Biblioteca - uva" height="60" width="80">
+			<b class="tituloInicio"><u>Busqueda Libros</u></b>
+			<br/>
+			<br/>
+			</div>
+			<b class="tituloInicioMovil visible-xs text-center"><u>Busqueda Libros</u></b>
+			
+			<div>
+				<h2 class="text-success text-center">HAY XFEfeew wewefwfewefw</h2>
+			</diV>
+			<div ng-repeat="libro in libros2" class="libro-busqueda">
+			<div  class="libro-busqueda col-lg-3 col-md-3 col-sm-3 foto-libro">
+				<img ng-src="{{libro.urlfoto}}">
+			
+			</div>
+				<div class="col-lg-6 col-sm-6 col-md-6 text-left">
 					<br/>
-				</li>
-				<li class="list-group-item text-center text-danger " ng-hide="librosVacio">No se ha encontrado ningun libro</li>
+				<strong>Titulo: {{libro.titulo}}</strong>
+					<h5>ISBN10: {{libro.ISBN10}}</h5>
+					<h5>ISBN13: {{libro.ISBN13}}</h5>
+				</div>
+				
+				</div>
+			<!--
+				<div class="col-lg-3 col-md-3 col-sm-3 ">
+				<img ng-src="{{libro.urlfoto}}">
+				</div>
+				<div class="col-lg-6 col-sm-6 col-md-6 text-left">
+					<br/>
+				<strong>Titulo: {{libro.titulo}}</strong>
+					<h5>ISBN10: {{libro.ISBN10}}</h5>
+					<h5>ISBN13: {{libro.ISBN13}}</h5>
+				</div>
+				
+			</div>-->
+			
+			
+			
+		
+			
+			<!--	<li class="list-group-item text-center text-danger " ng-hide="librosVacio">No se ha encontrado ningun libro</li>
 				<li class="list-group-item text-center" ng-show="!desactivado" ><ul class="pagination">
 		<button class="btn-lg btn-success" ng-click="muestraLibros()">
 			<span class="glyphicon glyphicon-chevron-left"></span>
@@ -40,13 +77,20 @@
 
 					</ul></li>
 				<li class="list-group-item text-center" ng-show="desactivado">Ya no hay mas elemetos con esa cadena</li>
-			</ul>
-
+		
+				-->
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ">
+		<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 ">
 			<prestamos></prestamos>
 		</div>
 	</div>
+		
+	<div class="cuerpo container">
+		<br/><br/>
+	<catalogo></catalogo>
+	<br/><br/>
+	</div>
+	
 	<pie-pagina></pie-pagina>
 </body>
 </html>
